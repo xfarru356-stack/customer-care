@@ -1,47 +1,132 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Customer Care</title>
+
 <style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
 body{
-background:#111;
-color:white;
-font-family:Arial;
-text-align:center;
+background:linear-gradient(135deg,#0f172a,#1e293b,#111827);
+color:#fff;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
 padding:20px;
 }
-.logo{
-width:150px;
-border-radius:15px;
+
+.card{
+width:100%;
+max-width:420px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+border-radius:20px;
+padding:30px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.5);
 }
-h1{color:#4da3ff;}
-p{color:#bdbdbd;}
+
+.logo{
+font-size:60px;
+margin-bottom:10px;
+}
+
+h1{
+font-size:30px;
+margin-bottom:8px;
+}
+
+p{
+color:#ddd;
+margin-bottom:20px;
+}
+
 .btn{
 display:block;
-margin:15px auto;
-padding:15px;
-width:90%;
-max-width:320px;
-background:#25D366;
-color:white;
 text-decoration:none;
-border-radius:10px;
-font-size:20px;
+padding:16px;
+margin:12px 0;
+border-radius:12px;
+font-size:18px;
+font-weight:bold;
+transition:.3s;
+}
+
+.whatsapp{
+background:#25D366;
+color:#fff;
+}
+
+.call{
+background:#2563eb;
+color:#fff;
+}
+
+.btn:hover{
+transform:scale(1.04);
+}
+
+.features{
+margin-top:25px;
+text-align:left;
+background:rgba(255,255,255,.06);
+padding:18px;
+border-radius:12px;
+}
+
+.features p{
+margin:8px 0;
+color:#fff;
+}
+
+.footer{
+margin-top:25px;
+font-size:13px;
+color:#aaa;
 }
 </style>
 </head>
+
 <body>
 
-<h1>Customer Care</h1>
-<p>Fast • Secure • Trusted Help</p>
+<div class="card">
 
-<a class="btn" href="https://wa.me/917300365084">
+<div class="logo">🎧</div>
+
+<h1>Customer Care</h1>
+
+<p>24×7 Fast • Secure • Trusted Support</p>
+
+<a class="btn whatsapp"
+href="https://wa.me/917300365084">
 💬 Chat on WhatsApp
 </a>
 
-<p>Need help? Contact our support team anytime.</p>
+<a class="btn call"
+href="tel:+917300365084">
+📞 Call Now
+</a>
+
+<div class="features">
+<p>✅ 24×7 Customer Support</p>
+<p>✅ Instant WhatsApp Reply</p>
+<p>✅ Safe & Secure Assistance</p>
+<p>✅ Fast Response Time</p>
+</div>
+
+<div class="footer">
+© 2026 Customer Care. All Rights Reserved.
+</div>
+
+</div>
 
 </body>
 </html>
