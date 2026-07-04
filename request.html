@@ -43,7 +43,7 @@
     </div>
 
     <script>
-        document.getElementById("supportform").addEventListener("submit", async function(e) {
+        document.getElementById("supportForm").addEventListener("submit", async function(e) {
             e.preventDefault();
 
             const mobile = document.getElementById("mobile").value;
@@ -76,7 +76,7 @@
 
                 if (result.ok) {
                     alert("Request submitted successfully!");
-                    document.getElementById("supportFrom").reset(); // फॉर्म खाली करने के लिए
+                    document.getElementById("supportForm").reset(); // फॉर्म खाली करने के लिए
                 } else {
                     alert("Telegram Error: " + result.description);
                 }
