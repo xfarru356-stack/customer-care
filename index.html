@@ -1,18 +1,56 @@
-<div style="width:100%;background:#2f3747;padding:15px;border-radius:12px;margin-bottom:20px;box-sizing:border-box;">
-  <h3 style="text-align:center;color:#fff;">🎧 Customer Care Notice</h3>
+<h2>Support Request</h2>
 
-  <p style="color:#fff;">
-  🇬🇧 <b>English:</b><br>
-  Please provide all the photos, details, or information requested by the admin. Only then can your issue be resolved.
-  </p>
+<form id="supportForm">
+  <input type="text" placeholder="Full Name" required><br><br>
 
-  <hr>
+  <input type="tel" placeholder="Mobile Number" required><br><br>
 
-  <p style="color:#fff;">
-  🇮🇳 <b>हिंदी:</b><br>
-  कृपया एडमिन द्वारा मांगी गई सभी फोटो, विवरण या जानकारी प्रदान करें। तभी आपकी समस्या का समाधान किया जा सकेगा।
-  </p>
-</div>
+  <input type="email" placeholder="Email Address" required><br><br>
+
+  <input type="text" placeholder="Customer ID"><br><br>
+
+  <textarea placeholder="Describe your problem" rows="5" required></textarea><br><br>
+
+  <button type="submit">Submit Request</button>
+</form>
+
+<style>
+body{
+  font-family:Arial,sans-serif;
+  background:#111;
+  color:#fff;
+  text-align:center;
+}
+form{
+  max-width:400px;
+  margin:auto;
+}
+input,textarea,button{
+  width:100%;
+  padding:12px;
+  margin-top:8px;
+  border-radius:8px;
+  border:1px solid #555;
+  box-sizing:border-box;
+}
+button{
+  background:#25D366;
+  color:white;
+  border:none;
+  font-size:18px;
+  cursor:pointer;
+}
+button:hover{
+  background:#1ea851;
+}
+</style>
+
+<script>
+document.getElementById("supportForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  alert("Support request submitted successfully!");
+});
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
