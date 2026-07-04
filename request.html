@@ -1,75 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELPCARE24 - Submit Request</title>
 
-<title>HELPCARE24 - Submit Request</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/font-awesome.min.css">
 </head>
 
 <body>
 
-<div class="bg1"></div>
-<div class="bg2"></div>
+    <div class="bg1"></div>
+    <div class="bg2"></div>
 
-<div class="card">
+    <div class="card">
 
-<div class="logo-circle">
-📝
-</div>
+        <div class="logo-circle">
+            📝
+        </div>
 
-<h1>Submit Request</h1>
+        <h1>Submit Request</h1>
+        <p>Please fill your details below</p>
 
-<p>Please fill your details below</p>
+        <form id="supportForm">
 
-<form action="#" method="post">
+            <input type="tel" id="mobile" placeholder="📱 Mobile Number" required>
 
-<input type="tel"
-placeholder="📱 Mobile Number"
-required>
+            <input type="email" id="email" placeholder="📧 Email Address" required>
 
-<input type="email"
-placeholder="📧 Email Address"
-required>
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Enter Your Password" required>
 
-<label>Password</label>
-<input type="password" id="password" placeholder="Enter Your Password" required>
+            <textarea id="description" rows="5" placeholder="📝 Write Your Problem Here..." required></textarea>
 
-<textarea
-rows="5"
-placeholder="📝 Write Your Problem Here..."
-required></textarea>
-
-<button type="submit" class="btn request">
-
-<i class="fa-solid fa-paper-plane"></i>
-
-<button type="submit" style="padding: 16px 40px; font-size: 18px; font-weight: bold; background: linear-gradient(45deg, #ff6b00, #ff9500); color: white; border: none; border-radius: 50px; width: 100%; margin-top: 15px;">
-    SUBMIT REQUEST
-</button>
-
-</button>
-
-</form>
-
-<br>
-
-<a href="index.html" class="btn call">
-
-<i class="fa-solid fa-house"></i>
-
-&nbsp; BACK TO HOME
-
-</a>
-
-</div>
-
-</body>
-</html>
+            <button type="submit" class="btn request" style="padding: 16px 40px; font-size: 18px; font-weight: bold; background: linear-gradient(45deg, #ff6b00, #ff9500); color: white; border: none; border-radius: 50px; width: 100%; margin-top: 15px;">
+                <i class="fa
