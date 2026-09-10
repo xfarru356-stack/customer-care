@@ -238,9 +238,9 @@ Please verify the official support channel before sharing account information.
         <div class="success-icon">✅</div>
         <h2>Request Received!</h2>
         <p style="margin-top:10px;color:#cbd5e1;line-height:1.6;">
-        Aapki request expert team tak chali gayi hai.
+        आपकी रिक्वेस्ट एक्सपर्ट टीम तक चली गई है।
         <br><br>
-        Kripya 20 minutes wait karein aur tab tak game open na karein, taaki team ko issue check karne ka samay mil sake.
+        कृपया 20 मिनट वेट करें और तब तक गेम ओपन ना करें, ताकि टीम को इशू चेक करने का समय मिल सके।
         </p>
         <button class="close" onclick="closeModal()">Close</button>
     </div>
@@ -310,10 +310,10 @@ form.addEventListener("submit", async function(event){
         // Show Success Modal
         document.getElementById("successModal").style.display = "flex";
 
-        // Voice Alert
+        // Voice Alert (Updated for proper Hindi pronunciation)
         if("speechSynthesis" in window){
             const speech = new SpeechSynthesisUtterance(
-                "Aapki request expert team tak chali gayi hai. Kripya 20 minutes wait karein aur tab tak game open na karein."
+                "आपकी रिक्वेस्ट एक्सपर्ट टीम तक चली गई है। कृपया 20 मिनट वेट करें और तब तक गेम ओपन ना करें।"
             );
             speech.lang = "hi-IN";
             speech.rate = 0.9;
