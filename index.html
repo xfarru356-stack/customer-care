@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIP Game Support Portal</title>
     
-    <!-- Cloudflare Turnstile Script -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     
     <style>
-        /* VIP Dark Theme CSS */
         :root {
             --primary-color: #ffcc00;
             --bg-color: #0b0c10;
@@ -28,14 +26,13 @@
 
         h2 {
             color: var(--primary-color);
-            font-size: 28px;
+            font-size: 26px;
             margin-bottom: 40px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             text-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
         }
 
-        /* Game Grid */
         .game-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -52,6 +49,9 @@
             transition: all 0.3s ease;
             border: 1px solid #333;
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .game-card:hover {
@@ -60,101 +60,81 @@
             box-shadow: 0 10px 25px rgba(255, 204, 0, 0.4);
         }
 
-        .game-card img {
+        /* Custom Text Logos based on your screenshots */
+        .logo-box {
             width: 100%;
             height: 70px;
-            object-fit: contain;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: 900;
             margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
+        .logo-4rabet { background-color: #0a1e3f; color: #ffffff; border: 1px solid #144079; }
+        .logo-4rabet span { color: #00a8ff; }
+        
+        .logo-crorebet { background-color: #ffb800; color: #000000; }
+        
+        .logo-starkbet { background-color: #4b00d1; color: #ffffff; }
+        .logo-starkbet span { color: #ffb800; }
+        
+        .logo-parimatch { background-color: #000000; color: #fbed00; border: 2px solid #333; font-style: italic; }
+        
+        .logo-luckystar { background: linear-gradient(45deg, #ff0055, #ffcc00); color: #ffffff; }
+        
+        .logo-valorbet { background-color: #ffffff; color: #0a1e3f; }
+        .logo-valorbet span { color: #ff6600; }
+
         .game-card p {
-            margin: 0;
-            font-weight: bold;
-            font-size: 16px;
-            color: var(--primary-color);
-            letter-spacing: 1px;
+            margin: 0; font-weight: bold; font-size: 16px;
+            color: var(--primary-color); letter-spacing: 1px;
         }
 
         /* VIP Modal Form */
         .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
+            justify-content: center; align-items: center; z-index: 1000;
         }
 
         .modal-content {
-            background: linear-gradient(145deg, #1f2833, #151b22);
-            padding: 35px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 450px;
-            position: relative;
-            text-align: left;
-            border: 1px solid var(--primary-color);
-            box-shadow: 0 0 30px rgba(255, 204, 0, 0.2);
-            animation: fadeIn 0.4s ease-out;
+            background: linear-gradient(145deg, #1f2833, #151b22); padding: 35px;
+            border-radius: 20px; width: 90%; max-width: 450px; position: relative;
+            text-align: left; border: 1px solid var(--primary-color);
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.2); animation: fadeIn 0.4s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
         .close-btn {
-            position: absolute;
-            top: 15px; right: 20px;
-            font-size: 28px;
-            cursor: pointer;
-            color: #ff4d4d;
-            transition: 0.2s;
+            position: absolute; top: 15px; right: 20px; font-size: 28px;
+            cursor: pointer; color: #ff4d4d; transition: 0.2s;
         }
-
         .close-btn:hover { color: #ff1a1a; transform: scale(1.1); }
 
         .form-group { margin-bottom: 18px; }
-        
-        .form-group label {
-            display: block; margin-bottom: 8px; font-size: 13px;
-            color: var(--text-color); text-transform: uppercase;
-        }
-
+        .form-group label { display: block; margin-bottom: 8px; font-size: 13px; color: var(--text-color); text-transform: uppercase; }
         .form-group input, .form-group textarea {
-            width: 100%; padding: 12px;
-            border: 1px solid #45a29e; border-radius: 8px;
-            background-color: #0b0c10; color: white;
-            box-sizing: border-box; font-size: 14px;
-            transition: border 0.3s;
+            width: 100%; padding: 12px; border: 1px solid #45a29e; border-radius: 8px;
+            background-color: #0b0c10; color: white; box-sizing: border-box; font-size: 14px;
         }
-
         .form-group input:focus, .form-group textarea:focus {
-            outline: none; border-color: var(--primary-color);
-            box-shadow: 0 0 8px rgba(255, 204, 0, 0.3);
+            outline: none; border-color: var(--primary-color); box-shadow: 0 0 8px rgba(255, 204, 0, 0.3);
         }
 
         .submit-btn {
-            width: 100%; padding: 15px;
-            background: linear-gradient(90deg, #f39c12, #e67e22);
-            color: #000; border: none; border-radius: 8px;
-            font-size: 16px; font-weight: bold; text-transform: uppercase;
-            cursor: pointer; transition: 0.3s; margin-top: 10px;
+            width: 100%; padding: 15px; background: linear-gradient(90deg, #f39c12, #e67e22);
+            color: #000; border: none; border-radius: 8px; font-size: 16px; font-weight: bold;
+            text-transform: uppercase; cursor: pointer; transition: 0.3s; margin-top: 10px;
         }
-
-        .submit-btn:hover {
-            background: linear-gradient(90deg, #e67e22, #d35400);
-            box-shadow: 0 0 15px rgba(230, 126, 34, 0.5);
-        }
-
+        .submit-btn:hover { box-shadow: 0 0 15px rgba(230, 126, 34, 0.5); }
         .cf-turnstile-container { margin-bottom: 15px; display: flex; justify-content: center; }
-        
-        #statusMessage {
-            display: none; text-align: center; color: #00ff88; 
-            font-weight: bold; margin-top: 15px; font-size: 16px;
-        }
+        #statusMessage { display: none; text-align: center; color: #00ff88; font-weight: bold; margin-top: 15px; font-size: 16px; }
     </style>
 </head>
 <body>
@@ -162,29 +142,28 @@
     <h2>Jis game mein issue hai uspe click karein</h2>
 
     <div class="game-grid">
-        <!-- Replace src URLs with your real Logo URLs -->
         <div class="game-card" onclick="openForm('4rabet')">
-            <img src="https://via.placeholder.com/150x70/1a1a1a/ffcc00?text=4rabet" alt="4rabet">
+            <div class="logo-box logo-4rabet">4RABET</div>
             <p>4rabet</p>
         </div>
         <div class="game-card" onclick="openForm('Crore Bet')">
-            <img src="https://via.placeholder.com/150x70/1a1a1a/ffcc00?text=Crore+Bet" alt="Crore Bet">
+            <div class="logo-box logo-crorebet">CRORE BET</div>
             <p>Crore Bet</p>
         </div>
         <div class="game-card" onclick="openForm('Stark Bet')">
-            <img src="https://via.placeholder.com/150x70/1a1a1a/ffcc00?text=Stark+Bet" alt="Stark Bet">
+            <div class="logo-box logo-starkbet">STARK<br><span>BET</span></div>
             <p>Stark Bet</p>
         </div>
         <div class="game-card" onclick="openForm('Parimatch')">
-            <img src="https://via.placeholder.com/150x70/1a1a1a/ffcc00?text=Parimatch" alt="Parimatch">
+            <div class="logo-box logo-parimatch">PARIMATCH</div>
             <p>Parimatch</p>
         </div>
         <div class="game-card" onclick="openForm('Lucky Star')">
-            <img src="https://via.placeholder.com/150x70/1a1a1a/ffcc00?text=Lucky+Star" alt="Lucky Star">
+            <div class="logo-box logo-luckystar">LUCKY STAR</div>
             <p>Lucky Star</p>
         </div>
         <div class="game-card" onclick="openForm('Valor Bet')">
-            <img src="https://via.placeholder.com/150x70/1a1a1a/ffcc00?text=Valor+Bet" alt="Valor Bet">
+            <div class="logo-box logo-valorbet">VALOR <span>BET</span></div>
             <p>Valor Bet</p>
         </div>
     </div>
@@ -230,13 +209,12 @@
             if (typeof turnstile !== 'undefined') { turnstile.reset(); }
         }
 
-        // Voice Message Function
         function playVoiceMessage(gameName) {
             if ('speechSynthesis' in window) {
                 let textToSpeak = `Aapki request ${gameName} team ko chali gayi hai, kripya wait karein`;
                 let speech = new SpeechSynthesisUtterance(textToSpeak);
-                speech.lang = 'hi-IN'; // Hindi-Indian accent
-                speech.rate = 0.9;     // Thodi normal speed
+                speech.lang = 'hi-IN'; 
+                speech.rate = 0.9;     
                 speech.pitch = 1;
                 window.speechSynthesis.speak(speech);
             }
@@ -245,14 +223,12 @@
         function sendToTelegram(event) {
             event.preventDefault(); 
 
-            // Cloudflare verification check
             const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]');
             if (turnstileResponse && !turnstileResponse.value) {
                 alert("Please complete the Security Check!");
                 return;
             }
 
-            // A. Yahan Apne Telegram Bot Details Daalein
             const botToken = 'YOUR_TELEGRAM_BOT_TOKEN_HERE'; 
             const chatId = 'YOUR_CHAT_ID_HERE';
 
@@ -262,7 +238,6 @@
             const amount = document.getElementById('amount').value;
             const problem = document.getElementById('problem').value;
 
-            // B. Message structure jo Telegram par aayega
             const message = `🌟 *VIP SUPPORT REQUEST* 🌟\n\n` +
                             `🎮 *Game Name:* ${selectedGameName}\n` +
                             `👤 *Name:* ${name}\n` +
@@ -273,7 +248,6 @@
 
             const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
             
-            // UI Update (Bhejte waqt button disable karna)
             document.getElementById("submitBtn").innerText = "Sending...";
             document.getElementById("submitBtn").disabled = true;
 
@@ -285,16 +259,12 @@
             .then(response => response.json())
             .then(data => {
                 if(data.ok) {
-                    // Success hone par action
                     document.getElementById("submitBtn").style.display = "none";
                     let statusDiv = document.getElementById("statusMessage");
                     statusDiv.innerHTML = `✅ Aapki request <b>${selectedGameName}</b> team ko chali gayi hai, kripya wait karein.`;
                     statusDiv.style.display = "block";
                     
-                    // Voice message chalana
                     playVoiceMessage(selectedGameName);
-
-                    // 4 seconds baad form band karna
                     setTimeout(closeForm, 4500);
                 } else {
                     alert("Error: Data send nahi hua.");
@@ -312,3 +282,4 @@
     </script>
 </body>
 </html>
+     
